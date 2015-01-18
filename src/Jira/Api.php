@@ -37,6 +37,8 @@ class Api
 	const REQUEST_PUT = 'PUT';
 	const REQUEST_DELETE = 'DELETE';
 
+    const WORKLOG_COMMENT = 'transition:';
+
 	const AUTOMAP_FIELDS = 0x01;
 
 	/**
@@ -852,6 +854,25 @@ class Api
 
 		return $result;
 	}
+
+    /**
+     * create JIRA Worklog
+     *
+     * @param $issue
+     * @param $filename
+     * @param array $options
+     * @return mixed
+     */
+    public function createWorklogFromTransition($issue, $transitionId, $time, $startDate)
+    {
+        $options = array(
+            "timeSpent" => $time,
+            "started" => "2013-09-01T10:30:18.932+0530",
+            "comment" => self::WORKLOG_COMMENT . $transitionId
+        );
+
+        return $this->api(self::REQUEST_POST, "/rest/api/2/issue/" . $issue . "/worklog", $options);
+    }
 
 	/**
 	 * Returns project components.
