@@ -37,7 +37,7 @@ class Api
 	const REQUEST_PUT = 'PUT';
 	const REQUEST_DELETE = 'DELETE';
 
-    const WORKLOG_COMMENT = 'transition:';
+    const TRANSITION_DELIMITER = 'transition:';
 
 	const AUTOMAP_FIELDS = 0x01;
 
@@ -868,7 +868,7 @@ class Api
         $options = array(
             "timeSpent" => $time,
             "started" => $startDate,
-            "comment" => self::WORKLOG_COMMENT . $transitionId
+            "comment" => self::TRANSITION_DELIMITER . $transitionId
         );
 
         return $this->api(self::REQUEST_POST, "/rest/api/2/issue/" . $issue . "/worklog", $options);
