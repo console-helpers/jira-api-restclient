@@ -867,7 +867,7 @@ class Api
     {
         $options = array(
             "timeSpent" => $time,
-            "started" => "2013-09-01T10:30:18.932+0530",
+            "started" => $startDate,
             "comment" => self::WORKLOG_COMMENT . $transitionId
         );
 
