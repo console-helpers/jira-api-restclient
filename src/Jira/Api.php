@@ -863,15 +863,17 @@ class Api
      * @param array $options
      * @return mixed
      */
-    public function createWorklogFromTransition($issue, $transitionId, $time, $startDate)
+    public function createWorklog($issueKey, $time, $options = array())
     {
-        $options = array(
-            "timeSpent" => $time,
-            "started" => $startDate,
-            "comment" => self::TRANSITION_DELIMITER . $transitionId
+
+        $options = array_merge(
+            array(
+                "timeSpent" => $time,
+            ),
+            $options
         );
 
-        return $this->api(self::REQUEST_POST, "/rest/api/2/issue/" . $issue . "/worklog", $options);
+        return $this->api(self::REQUEST_POST, "/rest/api/2/issue/" . $issueKey . "/worklog", $options);
     }
 
 	/**
