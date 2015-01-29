@@ -375,6 +375,27 @@ class Api
 		return $this->api(self::REQUEST_POST, sprintf('/rest/api/2/issue/%s/comment', $issue_key), $params);
 	}
 
+    /**
+     * create JIRA Worklog
+     *
+     * @param $issue
+     * @param $filename
+     * @param array $options
+     * @return mixed
+     */
+    public function createWorklog($issueKey, $time, $options = array())
+    {
+
+        $options = array_merge(
+            array(
+                "timeSpent" => $time,
+            ),
+            $options
+        );
+
+        return $this->api(self::REQUEST_POST, sprintf("/rest/api/2/issue/%s/worklog", $issueKey), $options);
+    }
+
 	/**
 	 * Get all worklogs for an issue.
 	 *
@@ -388,6 +409,21 @@ class Api
 	{
 		return $this->api(self::REQUEST_GET, sprintf('/rest/api/2/issue/%s/worklog', $issue_key), $params);
 	}
+
+    /**
+     * remove a JIRA Worklog
+     *
+     * @param $issueKey
+     * @return mixed
+     */
+    public function removeWorklog($issueKey, $worklogId)
+    {
+        $options = array(
+            "adjustEstimate" => "auto"
+        );
+
+        return $this->api(self::REQUEST_DELETE, sprintf("/rest/api/2/issue/%s/worklog/%s", $issueKey, $worklogId), $options);
+    }
 
 	/**
 	 * Get available transitions for a ticket.
@@ -854,27 +890,6 @@ class Api
 
 		return $result;
 	}
-
-    /**
-     * create JIRA Worklog
-     *
-     * @param $issue
-     * @param $filename
-     * @param array $options
-     * @return mixed
-     */
-    public function createWorklog($issueKey, $time, $options = array())
-    {
-
-        $options = array_merge(
-            array(
-                "timeSpent" => $time,
-            ),
-            $options
-        );
-
-        return $this->api(self::REQUEST_POST, "/rest/api/2/issue/" . $issueKey . "/worklog", $options);
-    }
 
 	/**
 	 * Returns project components.
