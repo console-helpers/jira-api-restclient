@@ -369,7 +369,7 @@ class Api
 	 * Add a comment to a ticket.
 	 *
 	 * @param string       $issue_key Issue key should be "YOURPROJ-221".
-	 * @param array|string $params    Params.
+	 * @param array|string $params    Params or body string.
 	 *
 	 * @return array|false
 	 */
