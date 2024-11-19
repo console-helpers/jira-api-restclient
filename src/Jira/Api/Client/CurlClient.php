@@ -51,6 +51,7 @@ class CurlClient implements ClientInterface
 	 * @param AuthenticationInterface $credential Credential.
 	 * @param boolean                 $is_file    This is a file upload request.
 	 * @param boolean                 $debug      Debug this request.
+	 * @param string                  $proxy      Proxy to use for the request
 	 *
 	 * @return array|string
 	 * @throws \InvalidArgumentException When non-supported implementation of AuthenticationInterface is given.
@@ -66,7 +67,8 @@ class CurlClient implements ClientInterface
 		$endpoint,
 		AuthenticationInterface $credential,
 		$is_file = false,
-		$debug = false
+		$debug = false,
+	    	$proxy = null
 	) {
 		if ( !($credential instanceof Basic) && !($credential instanceof Anonymous) ) {
 			throw new \InvalidArgumentException(sprintf(
@@ -86,6 +88,11 @@ class CurlClient implements ClientInterface
 		}
 
 		curl_setopt($curl, CURLOPT_URL, $endpoint . $url);
+		
+		if( !is_null($proxy) ) {
+		    curl_setopt($curl, CURLOPT_PROXY, $proxy);
+		}
+		
 		curl_setopt($curl, CURLOPT_HEADER, 0);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 

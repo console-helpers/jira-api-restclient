@@ -94,6 +94,13 @@ class Api
 	 * @var array|null
 	 */
 	protected $resolutions;
+	
+	/**
+	 * Proxy to use.
+	 *
+	 * @var string
+	 */
+	protected $proxy;
 
 	/**
 	 * Create a JIRA API client.
@@ -105,7 +112,8 @@ class Api
 	public function __construct(
 		$endpoint,
 		AuthenticationInterface $authentication,
-		ClientInterface $client = null
+		ClientInterface $client = null,
+	    	$proxy = null
 	) {
 		$this->setEndPoint($endpoint);
 		$this->authentication = $authentication;
@@ -115,6 +123,8 @@ class Api
 		}
 
 		$this->client = $client;
+		
+		$this->proxy = $proxy;
 	}
 
 	/**
@@ -723,7 +733,8 @@ class Api
 			$this->getEndpoint(),
 			$this->authentication,
 			$is_file,
-			$debug
+			$debug,
+			$this->proxy
 		);
 
 		if ( strlen($result) ) {
