@@ -374,6 +374,19 @@ class Api
 	}
 
 	/**
+	 * Add a worklog for an issue.
+	 *
+	 * @param string $issue_key Issue key should be "YOURPROJ-22".
+	 * @param array  $params    Params.
+	 *
+	 * @return Result|false
+	 */
+	public function addWorklog($issue_key, array $params)
+	{
+		return $this->api(self::REQUEST_POST, sprintf('/rest/api/2/issue/%s/worklog', $issue_key), $params);
+	}
+
+	/**
 	 * Get all worklogs for an issue.
 	 *
 	 * @param string $issue_key Issue key should be "YOURPROJ-22".
