@@ -170,6 +170,21 @@ class Api
 		$this->resolutions = null;
 	}
 
+    /**
+     * Helper method to formulate a query string from supplied parameter array.
+     *
+     * @param $params Array of URL parameters: [key => value]
+     * @return string
+     */
+	protected function formulateQueryString($params)
+    {
+        $query_string = "?";
+        foreach ($params as $key => $value) {
+            $query_string .= "$key=$value&";
+        }
+        return rtrim($query_string, "&");
+    }
+
 	/**
 	 * Get fields definitions.
 	 *
@@ -206,17 +221,20 @@ class Api
 		return $this->api(self::REQUEST_GET, sprintf('/rest/api/2/issue/%s', $issue_key), array('expand' => $expand));
 	}
 
-	/**
-	 * Edits the issue.
-	 *
-	 * @param string $issue_key Issue key.
-	 * @param array  $params    Params.
-	 *
-	 * @return Result|false
-	 */
-	public function editIssue($issue_key, array $params)
+    /**
+     * Edits the issue.
+     *
+     * @param string $issue_key Issue key.
+     * @param array $params Params.
+     * @param array $query_params Optional URL query string parameters
+     *
+     * @return Result|false
+     * @internal param array $queryParams Query-string params
+     *
+     */
+	public function editIssue($issue_key, array $params, array $query_params = array())
 	{
-		return $this->api(self::REQUEST_PUT, sprintf('/rest/api/2/issue/%s', $issue_key), $params);
+		return $this->api(self::REQUEST_PUT, sprintf('/rest/api/2/issue/%s', $issue_key), $params, null, null, null, $query_params);
 	}
 
 	/**
@@ -696,26 +714,32 @@ class Api
 		return $this->api(self::REQUEST_POST, sprintf('/rest/api/2/issue/%s/remotelink', $issue_key), $options, true);
 	}
 
-	/**
-	 * Send request to specified host.
-	 *
-	 * @param string       $method          Request method.
-	 * @param string       $url             URL.
-	 * @param array|string $data            Data.
-	 * @param boolean      $return_as_array Return results as associative array.
-	 * @param boolean      $is_file         Is file-related request.
-	 * @param boolean      $debug           Debug this request.
-	 *
-	 * @return array|Result|false
-	 */
+    /**
+     * Send request to specified host.
+     *
+     * @param string $method Request method.
+     * @param string $url URL.
+     * @param array|string $data Data.
+     * @param boolean $return_as_array Return results as associative array.
+     * @param boolean $is_file Is file-related request.
+     * @param boolean $debug Debug this request.
+     * @param array $url_params Optional parameters to add to the URL
+     *
+     * @return array|Result|false
+     */
 	public function api(
 		$method = self::REQUEST_GET,
 		$url,
 		$data = array(),
 		$return_as_array = false,
 		$is_file = false,
-		$debug = false
+		$debug = false,
+        $url_params = array()
 	) {
+	    if ($url_params) {
+	        $url .= $this->formulateQueryString($url_params);
+        }
+
 		$result = $this->client->sendRequest(
 			$method,
 			$url,
