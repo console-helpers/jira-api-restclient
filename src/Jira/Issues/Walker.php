@@ -157,9 +157,8 @@ class Walker implements \Iterator, \Countable
 
 			return $callback($tmp);
 		}
-		else {
-			return $this->issues[$this->offset];
-		}
+
+		return $this->issues[$this->offset];
 	}
 
 	/**
@@ -184,9 +183,8 @@ class Walker implements \Iterator, \Countable
 		if ( $this->startAt > 0 ) {
 			return $this->offset + (($this->startAt - 1) * $this->perPage);
 		}
-		else {
-			return 0;
-		}
+
+		return 0;
 	}
 
 	/**
@@ -200,7 +198,7 @@ class Walker implements \Iterator, \Countable
 	 */
 	public function valid()
 	{
-		if ( is_null($this->jql) ) {
+		if ( $this->jql === null ) {
 			throw new \Exception('you have to call Jira_Walker::push($jql, $fields) at first');
 		}
 
@@ -247,9 +245,8 @@ class Walker implements \Iterator, \Countable
 				if ( ($this->startAt - 1) * $this->perPage + $this->offset < $this->total ) {
 					return true;
 				}
-				else {
-					return false;
-				}
+
+				return false;
 			}
 		}
 	}

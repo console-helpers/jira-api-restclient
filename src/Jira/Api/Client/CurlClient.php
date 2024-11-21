@@ -25,9 +25,9 @@
 namespace chobie\Jira\Api\Client;
 
 
+use chobie\Jira\Api\Authentication\Anonymous;
 use chobie\Jira\Api\Authentication\AuthenticationInterface;
 use chobie\Jira\Api\Authentication\Basic;
-use chobie\Jira\Api\Authentication\Anonymous;
 use chobie\Jira\Api\Exception;
 use chobie\Jira\Api\UnauthorizedException;
 
@@ -146,7 +146,7 @@ class CurlClient implements ClientInterface
 		}
 
 		// @codeCoverageIgnoreStart
-		if ( is_null($response) ) {
+		if ( $response === null ) {
 			throw new Exception('JIRA Rest server returns unexpected result.');
 		}
 		// @codeCoverageIgnoreEnd

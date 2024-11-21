@@ -181,7 +181,7 @@ class PHPClient implements ClientInterface
 		}
 
 		// @codeCoverageIgnoreStart
-		if ( is_null($response) ) {
+		if ( $response === null ) {
 			throw new Exception('JIRA Rest server returns unexpected result.');
 		}
 		// @codeCoverageIgnoreEnd
