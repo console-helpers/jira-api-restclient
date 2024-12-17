@@ -709,7 +709,7 @@ class Api
 	 * @return array|Result|false
 	 */
 	public function api(
-		$method = self::REQUEST_GET,
+		$method,
 		$url,
 		$data = array(),
 		$return_as_array = false,

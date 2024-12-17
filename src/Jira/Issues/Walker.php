@@ -149,7 +149,7 @@ class Walker implements \Iterator, \Countable
 	 * @return mixed Can return any type.
 	 * @link   http://php.net/manual/en/iterator.current.php
 	 */
-	public function current()
+	public function current(): mixed
 	{
 		if ( is_callable($this->callback) ) {
 			$tmp = $this->issues[$this->offset];
@@ -168,7 +168,7 @@ class Walker implements \Iterator, \Countable
 	 * @return void Any returned value is ignored.
 	 * @link   http://php.net/manual/en/iterator.next.php
 	 */
-	public function next()
+	public function next(): void
 	{
 		$this->offset++;
 	}
@@ -179,7 +179,7 @@ class Walker implements \Iterator, \Countable
 	 * @return mixed scalar on success, or null on failure.
 	 * @link   http://php.net/manual/en/iterator.key.php
 	 */
-	public function key()
+	public function key(): mixed
 	{
 		if ( $this->startAt > 0 ) {
 			return $this->offset + (($this->startAt - 1) * $this->perPage);
@@ -198,7 +198,7 @@ class Walker implements \Iterator, \Countable
 	 * @throws Api\UnauthorizedException When it happens.
 	 * @link   http://php.net/manual/en/iterator.valid.php
 	 */
-	public function valid()
+	public function valid(): bool
 	{
 		if ( is_null($this->jql) ) {
 			throw new \Exception('you have to call Jira_Walker::push($jql, $fields) at first');
@@ -260,7 +260,7 @@ class Walker implements \Iterator, \Countable
 	 * @return void Any returned value is ignored.
 	 * @link   http://php.net/manual/en/iterator.rewind.php
 	 */
-	public function rewind()
+	public function rewind(): void
 	{
 		$this->offset = 0;
 		$this->startAt = 0;
@@ -277,7 +277,7 @@ class Walker implements \Iterator, \Countable
 	 * @return integer The custom count as an integer.
 	 * @link   http://php.net/manual/en/countable.count.php
 	 */
-	public function count()
+	public function count(): int
 	{
 		if ( $this->total === null ) {
 			$this->valid();
