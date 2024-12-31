@@ -37,7 +37,6 @@ class Api
 	const REQUEST_PUT = 'PUT';
 	const REQUEST_DELETE = 'DELETE';
 
-
 	const AUTOMAP_FIELDS = 0x01;
 
 	/**
@@ -381,7 +380,8 @@ class Api
 	 * @param string $time      Time.
 	 * @param array  $options   Options.
 	 *
-	 * @return mixed
+	 * @return Result|false
+	 * @since  2.0.0
 	 */
 	public function createWorklog($issue_key, $time, array $options = array())
 	{
@@ -415,7 +415,8 @@ class Api
 	 * @param string  $issue_key  Issue key should be "YOURPROJ-22".
 	 * @param integer $worklog_id Work Log ID.
 	 *
-	 * @return mixed
+	 * @return Result|false
+	 * @since  2.0.0
 	 */
 	public function removeWorklog($issue_key, $worklog_id)
 	{
