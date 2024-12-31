@@ -375,26 +375,26 @@ class Api
 		return $this->api(self::REQUEST_POST, sprintf('/rest/api/2/issue/%s/comment', $issue_key), $params);
 	}
 
-    /**
-     * create JIRA Worklog
-     *
-     * @param $issue
-     * @param $filename
-     * @param array $options
-     * @return mixed
-     */
-    public function createWorklog($issueKey, $time, $options = array())
-    {
+	/**
+	 * Creates worklog for na issue.
+	 *
+	 * @param string $issue_key Issue key should be "YOURPROJ-22".
+	 * @param string $time      Time.
+	 * @param array  $options   Options.
+	 *
+	 * @return mixed
+	 */
+	public function createWorklog($issue_key, $time, array $options = array())
+	{
+		$options = array_merge(
+			array(
+				'timeSpent' => $time,
+			),
+			$options
+		);
 
-        $options = array_merge(
-            array(
-                "timeSpent" => $time,
-            ),
-            $options
-        );
-
-        return $this->api(self::REQUEST_POST, sprintf("/rest/api/2/issue/%s/worklog", $issueKey), $options);
-    }
+		return $this->api(self::REQUEST_POST, sprintf('/rest/api/2/issue/%s/worklog', $issue_key), $options);
+	}
 
 	/**
 	 * Get all worklogs for an issue.
@@ -410,20 +410,26 @@ class Api
 		return $this->api(self::REQUEST_GET, sprintf('/rest/api/2/issue/%s/worklog', $issue_key), $params);
 	}
 
-    /**
-     * remove a JIRA Worklog
-     *
-     * @param $issueKey
-     * @return mixed
-     */
-    public function removeWorklog($issueKey, $worklogId)
-    {
-        $options = array(
-            "adjustEstimate" => "auto"
-        );
+	/**
+	 * Remove an issue worklog.
+	 *
+	 * @param string  $issue_key  Issue key should be "YOURPROJ-22".
+	 * @param integer $worklog_id Work Log ID.
+	 *
+	 * @return mixed
+	 */
+	public function removeWorklog($issue_key, $worklog_id)
+	{
+		$options = array(
+			'adjustEstimate' => 'auto',
+		);
 
-        return $this->api(self::REQUEST_DELETE, sprintf("/rest/api/2/issue/%s/worklog/%s", $issueKey, $worklogId), $options);
-    }
+		return $this->api(
+			self::REQUEST_DELETE,
+			sprintf('/rest/api/2/issue/%s/worklog/%s', $issue_key, $worklog_id),
+			$options
+		);
+	}
 
 	/**
 	 * Get available transitions for a ticket.
