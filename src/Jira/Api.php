@@ -414,20 +414,17 @@ class Api
 	 *
 	 * @param string  $issue_key  Issue key should be "YOURPROJ-22".
 	 * @param integer $worklog_id Work Log ID.
+	 * @param array   $params     Params.
 	 *
 	 * @return Result|false
 	 * @since  2.0.0
 	 */
-	public function removeWorklog($issue_key, $worklog_id)
+	public function removeWorklog($issue_key, $worklog_id, array $params = array())
 	{
-		$options = array(
-			'adjustEstimate' => 'auto',
-		);
-
 		return $this->api(
 			self::REQUEST_DELETE,
 			sprintf('/rest/api/2/issue/%s/worklog/%s', $issue_key, $worklog_id),
-			$options
+			$params
 		);
 	}
 
