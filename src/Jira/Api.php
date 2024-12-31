@@ -374,7 +374,7 @@ class Api
 	}
 
 	/**
-	 * Creates worklog for na issue.
+	 * Adds a worklog for an issue.
 	 *
 	 * @param string         $issue_key  Issue key should be "YOURPROJ-22".
 	 * @param integer        $started    Start time (unix timestamp).
@@ -384,7 +384,7 @@ class Api
 	 * @return Result|false
 	 * @since  2.0.0
 	 */
-	public function createWorklog($issue_key, $started, $time_spent, array $params = array())
+	public function addWorklog($issue_key, $started, $time_spent, array $params = array())
 	{
 		$params['started'] = date('Y-m-dTG:m:s.vO', $started);
 
@@ -413,7 +413,7 @@ class Api
 	}
 
 	/**
-	 * Remove an issue worklog.
+	 * Deletes an issue worklog.
 	 *
 	 * @param string  $issue_key  Issue key should be "YOURPROJ-22".
 	 * @param integer $worklog_id Work Log ID.
@@ -422,7 +422,7 @@ class Api
 	 * @return Result|false
 	 * @since  2.0.0
 	 */
-	public function removeWorklog($issue_key, $worklog_id, array $params = array())
+	public function deleteWorklog($issue_key, $worklog_id, array $params = array())
 	{
 		return $this->api(
 			self::REQUEST_DELETE,
