@@ -37,7 +37,6 @@ class Api
 	const REQUEST_PUT = 'PUT';
 	const REQUEST_DELETE = 'DELETE';
 
-    const TRANSITION_DELIMITER = 'transition:';
 
 	const AUTOMAP_FIELDS = 0x01;
 
