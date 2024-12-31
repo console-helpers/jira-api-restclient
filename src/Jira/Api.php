@@ -376,23 +376,26 @@ class Api
 	/**
 	 * Creates worklog for na issue.
 	 *
-	 * @param string $issue_key Issue key should be "YOURPROJ-22".
-	 * @param string $time      Time.
-	 * @param array  $options   Options.
+	 * @param string         $issue_key  Issue key should be "YOURPROJ-22".
+	 * @param integer        $started    Start time (unix timestamp).
+	 * @param string|integer $time_spent Either string in "2w 4d 6h 45m" format or second count as a number.
+	 * @param array          $params     Params.
 	 *
 	 * @return Result|false
 	 * @since  2.0.0
 	 */
-	public function createWorklog($issue_key, $time, array $options = array())
+	public function createWorklog($issue_key, $started, $time_spent, array $params = array())
 	{
-		$options = array_merge(
-			array(
-				'timeSpent' => $time,
-			),
-			$options
-		);
+		$params['started'] = date('Y-m-dTG:m:s.vO', $started);
 
-		return $this->api(self::REQUEST_POST, sprintf('/rest/api/2/issue/%s/worklog', $issue_key), $options);
+		if ( is_int($time_spent) ) {
+			$params['timeSpentSeconds'] = $time_spent;
+		}
+		else {
+			$params['timeSpent'] = $time_spent;
+		}
+
+		return $this->api(self::REQUEST_POST, sprintf('/rest/api/2/issue/%s/worklog', $issue_key), $params);
 	}
 
 	/**
