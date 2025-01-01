@@ -38,6 +38,7 @@ class Api
 	const REQUEST_DELETE = 'DELETE';
 
 	const AUTOMAP_FIELDS = 0x01;
+	const DATE_TIME_FORMAT = 'Y-m-d\TG:m:s.vO';
 
 	/**
 	 * Endpoint URL.
@@ -377,17 +378,14 @@ class Api
 	 * Adds a worklog for an issue.
 	 *
 	 * @param string         $issue_key  Issue key should be "YOURPROJ-22".
-	 * @param integer        $started    Start time (unix timestamp).
 	 * @param string|integer $time_spent Either string in "2w 4d 6h 45m" format or second count as a number.
 	 * @param array          $params     Params.
 	 *
-	 * @return Result|false
+	 * @return array
 	 * @since  2.0.0
 	 */
-	public function addWorklog($issue_key, $started, $time_spent, array $params = array())
+	public function addWorklog($issue_key, $time_spent, array $params = array())
 	{
-		$params['started'] = date('Y-m-dTG:m:s.vO', $started);
-
 		if ( is_int($time_spent) ) {
 			$params['timeSpentSeconds'] = $time_spent;
 		}
@@ -395,7 +393,12 @@ class Api
 			$params['timeSpent'] = $time_spent;
 		}
 
-		return $this->api(self::REQUEST_POST, sprintf('/rest/api/2/issue/%s/worklog', $issue_key), $params);
+		return $this->api(
+			self::REQUEST_POST,
+			sprintf('/rest/api/2/issue/%s/worklog', $issue_key),
+			$params,
+			true
+		);
 	}
 
 	/**
@@ -419,7 +422,7 @@ class Api
 	 * @param integer $worklog_id Work Log ID.
 	 * @param array   $params     Params.
 	 *
-	 * @return Result|false
+	 * @return array
 	 * @since  2.0.0
 	 */
 	public function deleteWorklog($issue_key, $worklog_id, array $params = array())
@@ -427,7 +430,8 @@ class Api
 		return $this->api(
 			self::REQUEST_DELETE,
 			sprintf('/rest/api/2/issue/%s/worklog/%s', $issue_key, $worklog_id),
-			$params
+			$params,
+			true
 		);
 	}
 
