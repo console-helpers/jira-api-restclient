@@ -23,6 +23,9 @@
 	<!--
 		<php>
 			<server name="REPO_URL" value="http://localhost/"/>
+			<server name="LIVE_TEST_ENDPOINT" value="https://site.atlassian.net/"/>
+			<server name="LIVE_TEST_USERNAME" value=""/>
+			<server name="LIVE_TEST_PASSWORD" value=""/>
 		</php>
 	-->
 </phpunit>

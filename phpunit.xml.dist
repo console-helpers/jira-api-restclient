@@ -14,15 +14,18 @@
 		</testsuite>
 	</testsuites>
 
-	<filter>
-		<whitelist>
-			<directory>src</directory>
-		</whitelist>
-	</filter>
+    <filter>
+        <whitelist>
+            <directory>src</directory>
+        </whitelist>
+    </filter>
 
-	<!--
-		<php>
+    <!--
+        <php>
 			<server name="REPO_URL" value="http://localhost/"/>
-		</php>
+			<server name="LIVE_TEST_ENDPOINT" value="https://site.atlassian.net/"/>
+			<server name="LIVE_TEST_USERNAME" value=""/>
+			<server name="LIVE_TEST_PASSWORD" value=""/>
+        </php>
 	-->
 </phpunit>
