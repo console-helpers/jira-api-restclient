@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Added optional override for the filename in `Api::createAttachment` by [@betterphp]
 - Allow getting issue count back from `Walker` class by [@aik099].
 - Setup `.gitattributes` for better `CHANGELOG.md` merging by [@glensc].
+- Added `Api::addWorklog` and `Api::deleteWorklog` calls for more control over the work logs [@dumconstantin] and [@aik099].
 
 ### Changed
 - Classes/interfaces were renamed to use namespaces by [@chobie].
@@ -71,3 +72,4 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 [@aik099]: https://github.com/aik099
 [@betterphp]: https://github.com/betterphp
 [@glensc]: https://github.com/glensc
+[@dumconstantin]: https://github.com/dumconstantin
