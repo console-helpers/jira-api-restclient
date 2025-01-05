@@ -603,7 +603,8 @@ class Api
 	 * @param integer $max_results Max results.
 	 * @param string  $fields      Fields.
 	 *
-	 * @return Result|false
+	 * @return Result
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-search/#api-rest-api-2-search-get
 	 */
 	public function search($jql, $start_at = 0, $max_results = 20, $fields = '*navigable')
 	{

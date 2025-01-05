@@ -86,8 +86,6 @@ class ApiTest extends AbstractTestCase
 			$response
 		);
 
-		$response_decoded = json_decode($response, true);
-
 		// Field auto-expanding would trigger this call.
 		$this->expectClientCall(
 			Api::REQUEST_GET,
@@ -96,7 +94,11 @@ class ApiTest extends AbstractTestCase
 			file_get_contents(__DIR__ . '/resources/api_field.json')
 		);
 
-		$this->assertEquals(new Result($response_decoded), $this->api->search('test', 0, 2, 'description'));
+		$this->assertApiResponse(
+			$response,
+			$this->api->search('test', 0, 2, 'description')
+		);
+	}
 	}
 
 	public function testUpdateVersion()
