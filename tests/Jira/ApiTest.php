@@ -145,6 +145,8 @@ class ApiTest extends AbstractTestCase
 
 	public function testUpdateVersion()
 	{
+		$response = file_get_contents(__DIR__ . '/resources/api_create_version.json');
+
 		$params = array(
 			'overdue' => true,
 			'description' => 'new description',
@@ -154,10 +156,13 @@ class ApiTest extends AbstractTestCase
 			Api::REQUEST_PUT,
 			'/rest/api/2/version/111000',
 			$params,
-			''
+			$response
 		);
 
-		$this->assertFalse($this->api->updateVersion(111000, $params));
+		$this->assertApiResponse(
+			$response,
+			$this->api->updateVersion(111000, $params)
+		);
 	}
 
 	public function testReleaseVersionAutomaticReleaseDate()

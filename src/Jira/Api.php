@@ -652,9 +652,9 @@ class Api
 	 * @param integer $version_id Version ID.
 	 * @param array   $params     Key->Value list to update the version with.
 	 *
-	 * @return false
+	 * @return Result
 	 * @since  2.0.0
-	 * @link   https://docs.atlassian.com/jira/REST/latest/#api/2/version-updateVersion
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-versions/#api-rest-api-2-version-id-put
 	 */
 	public function updateVersion($version_id, array $params = array())
 	{
