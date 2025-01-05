@@ -1,0 +1,25 @@
+[
+	{
+		"self": "https://test.atlassian.net/rest/api/2/attachment/12211",
+		"id": "12211",
+		"filename": "api_get_attachments_meta.json",
+		"author": {
+			"accountId": "5b10a2844c20165700ede21g",
+			"active": true,
+			"avatarUrls": {
+				"16x16": "https://avatar-management--avatars.server-location.prod.public.atl-paas.net/initials/MK-5.png?size=16&s=16",
+				"24x24": "https://avatar-management--avatars.server-location.prod.public.atl-paas.net/initials/MK-5.png?size=24&s=24",
+				"32x32": "https://avatar-management--avatars.server-location.prod.public.atl-paas.net/initials/MK-5.png?size=32&s=32",
+				"48x48": "https://avatar-management--avatars.server-location.prod.public.atl-paas.net/initials/MK-5.png?size=48&s=48"
+			},
+			"displayName": "Mia Krystof",
+			"emailAddress": "mia@example.com",
+			"self": "https://your-domain.atlassian.net/rest/api/2/user?accountId=5b10a2844c20165700ede21g",
+			"timeZone": "Australia/Sydney"
+		},
+		"created": "2025-01-05T21:34:14.433+0200",
+		"size": 49,
+		"mimeType": "application/json",
+		"content": "https://test.atlassian.net/rest/api/2/attachment/content/12211"
+	}
+]

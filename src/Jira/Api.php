@@ -696,18 +696,19 @@ class Api
 	 * @param string $name      Name.
 	 *
 	 * @return Result|false
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-attachments/#api-rest-api-2-issue-issueidorkey-attachments-post
 	 */
 	public function createAttachment($issue_key, $filename, $name = null)
 	{
-		$options = array(
+		$params = array(
 			'file' => '@' . $filename,
-			'name' => $name,
+			'name' => $name, // The NULL value is handled in the "ClientInterface" implementing class.
 		);
 
 		return $this->api(
 			self::REQUEST_POST,
 			sprintf('/rest/api/2/issue/%s/attachments', $issue_key),
-			$options,
+			$params,
 			false,
 			true
 		);

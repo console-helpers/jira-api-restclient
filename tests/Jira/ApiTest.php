@@ -211,9 +211,47 @@ class ApiTest extends AbstractTestCase
 			$this->api->releaseVersion(111000, $release_date, array('test' => 'extra'))
 		);
 	}
+
+	public function testCreateAttachmentWithAutomaticAttachmentName()
+	{
+		$response = file_get_contents(__DIR__ . '/resources/api_create_attachment.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_POST,
+			'/rest/api/2/issue/JRE-123/attachments',
+			array(
+				'file' => '@' . __DIR__ . '/resources/api_field.json',
+				'name' => null,
+			),
+			$response,
+			true
 		);
 
-		$this->assertFalse($this->api->releaseVersion(111000, $release_date, array('test' => 'extra')));
+		$this->assertApiResponse(
+			$response,
+			$this->api->createAttachment('JRE-123', __DIR__ . '/resources/api_field.json')
+		);
+	}
+
+	public function testCreateAttachmentWithManualAttachmentName()
+	{
+		$response = file_get_contents(__DIR__ . '/resources/api_create_attachment.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_POST,
+			'/rest/api/2/issue/JRE-123/attachments',
+			array(
+				'file' => '@' . __DIR__ . '/resources/api_field.json',
+				'name' => 'manual.txt',
+			),
+			$response,
+			true
+		);
+
+		$this->assertApiResponse(
+			$response,
+			$this->api->createAttachment('JRE-123', __DIR__ . '/resources/api_field.json', 'manual.txt')
+		);
 	}
 
 	public function testDownloadAttachmentSuccessful()
