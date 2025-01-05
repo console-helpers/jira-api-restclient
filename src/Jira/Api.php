@@ -627,26 +627,23 @@ class Api
 	 *
 	 * @param string $project_key Project key.
 	 * @param string $version     Version.
-	 * @param array  $options     Options.
+	 * @param array  $params      Params.
 	 *
-	 * @return Result|false
+	 * @return Result
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-versions/#api-rest-api-2-version-post
 	 */
-	public function createVersion($project_key, $version, array $options = array())
+	public function createVersion($project_key, $version, array $params = array())
 	{
-		$options = array_merge(
+		$params = array_merge(
 			array(
 				'name' => $version,
-				'description' => '',
 				'project' => $project_key,
-				// 'userReleaseDate' => '',
-				// 'releaseDate' => '',
-				'released' => false,
 				'archived' => false,
 			),
-			$options
+			$params
 		);
 
-		return $this->api(self::REQUEST_POST, '/rest/api/2/version', $options);
+		return $this->api(self::REQUEST_POST, '/rest/api/2/version', $params);
 	}
 
 	/**

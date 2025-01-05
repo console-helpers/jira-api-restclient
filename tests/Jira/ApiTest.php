@@ -99,6 +99,48 @@ class ApiTest extends AbstractTestCase
 			$this->api->search('test', 0, 2, 'description')
 		);
 	}
+
+	public function testCreateVersionWithoutCustomParams()
+	{
+		$response = file_get_contents(__DIR__ . '/resources/api_create_version.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_POST,
+			'/rest/api/2/version',
+			array(
+				'name' => '1.2.3',
+				'project' => 'TST',
+				'archived' => false,
+			),
+			$response
+		);
+
+		$this->assertApiResponse(
+			$response,
+			$this->api->createVersion('TST', '1.2.3')
+		);
+	}
+
+	public function testCreateVersionWithCustomParams()
+	{
+		$response = file_get_contents(__DIR__ . '/resources/api_create_version.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_POST,
+			'/rest/api/2/version',
+			array(
+				'name' => '1.2.3',
+				'project' => 'TST',
+				'archived' => true,
+				'description' => 'test',
+			),
+			$response
+		);
+
+		$this->assertApiResponse(
+			$response,
+			$this->api->createVersion('TST', '1.2.3', array('archived' => true, 'description' => 'test'))
+		);
 	}
 
 	public function testUpdateVersion()

@@ -1,0 +1,8 @@
+{
+	"self": "https://test.atlassian.net/rest/api/2/version/10528",
+	"id": "10528",
+	"name": "9.8.7",
+	"archived": false,
+	"released": false,
+	"projectId": 10047
+}
