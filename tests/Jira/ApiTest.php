@@ -524,6 +524,24 @@ class ApiTest extends AbstractTestCase
 	}
 
 	/**
+	 * Checks, that response is correct.
+	 *
+	 * @param string       $expected_raw_response Expected raw response.
+	 * @param Result|false $actual_response       Actual response.
+	 *
+	 * @return void
+	 */
+	protected function assertApiResponse($expected_raw_response, $actual_response)
+	{
+		$expected = new Result(json_decode($expected_raw_response, true));
+
+		// You'll get "false", when unexpected API call was made.
+		if ( $actual_response !== false ) {
+			$this->assertEquals($expected, $actual_response);
+		}
+	}
+
+	/**
 	 * Expects a particular client call.
 	 *
 	 * @param string       $method       Request method.
