@@ -377,6 +377,148 @@ class ApiTest extends AbstractTestCase
 		);
 	}
 
+	public function testFalseOnEmptyResponse()
+	{
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/something',
+			array(),
+			''
+		);
+
+		$this->assertFalse($this->api->api(api::REQUEST_GET, '/rest/api/2/something'));
+	}
+
+	public function testResponseIsJsonDecodedIntoArray()
+	{
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/something',
+			array(),
+			'{"key":"value"}'
+		);
+
+		$this->assertEquals(
+			array('key' => 'value'),
+			$this->api->api(api::REQUEST_GET, '/rest/api/2/something', array(), true)
+		);
+	}
+
+	public function testResponseIsJsonDecodedIntoResultObject()
+	{
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/something',
+			array(),
+			'{"key":"value"}'
+		);
+
+		$this->assertEquals(
+			new Result(array('key' => 'value')),
+			$this->api->api(api::REQUEST_GET, '/rest/api/2/something')
+		);
+	}
+
+	/**
+	 * @dataProvider responseAutomappingDataProvider
+	 */
+	public function testResponseAutomapping($options, $jira_response, array $expected_response)
+	{
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/something',
+			array(),
+			$jira_response
+		);
+
+		// Field auto-expanding would trigger this call.
+		if ( $options === Api::AUTOMAP_FIELDS ) {
+			$decoded_field_response = array(
+				array(
+					'id' => 'title',
+					'name' => 'Заголовок',
+				),
+				array(
+					'id' => 'description',
+					'name' => 'Описание',
+				),
+			);
+			$this->expectClientCall(
+				Api::REQUEST_GET,
+				'/rest/api/2/field',
+				array(),
+				json_encode($decoded_field_response)
+			);
+		}
+
+		$this->api->setOptions($options);
+
+		$this->assertEquals(
+			$expected_response,
+			$this->api->api(api::REQUEST_GET, '/rest/api/2/something', array(), true)
+		);
+	}
+
+	public static function responseAutomappingDataProvider()
+	{
+		$decoded_issues_response = array(
+			'issues' => array(
+				array(
+					'fields' => array(
+						'title' => 'sample title 1',
+						'description' => 'sample description 1',
+						'issuetype' => array(
+							'self' => 'https://test.atlassian.net/rest/api/2/issuetype/10034',
+						),
+					),
+				),
+				array(
+					'fields' => array(
+						'title' => 'sample title 2',
+						'description' => 'sample description 2',
+						'issuetype' => array(
+							'self' => 'https://test.atlassian.net/rest/api/2/issuetype/10035',
+						),
+					),
+				),
+			),
+		);
+
+		return array(
+			'auto-map' => array(
+				Api::AUTOMAP_FIELDS,
+				json_encode($decoded_issues_response),
+				array(
+					'issues' => array(
+						array(
+							'fields' => array(
+								'Заголовок' => 'sample title 1',
+								'Описание' => 'sample description 1',
+								'issuetype' => array(
+									'self' => 'https://test.atlassian.net/rest/api/2/issuetype/10034',
+								),
+							),
+						),
+						array(
+							'fields' => array(
+								'Заголовок' => 'sample title 2',
+								'Описание' => 'sample description 2',
+								'issuetype' => array(
+									'self' => 'https://test.atlassian.net/rest/api/2/issuetype/10035',
+								),
+							),
+						),
+					),
+				),
+			),
+			'don\'t auto-map' => array(
+				0,
+				json_encode($decoded_issues_response),
+				$decoded_issues_response,
+			),
+		);
+	}
+
 	public function testFindVersionByName()
 	{
 		$project_key = 'POR';
