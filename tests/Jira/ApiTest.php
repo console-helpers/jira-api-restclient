@@ -51,6 +51,7 @@ class ApiTest extends AbstractTestCase
 		$this->client = $this->prophesize(ClientInterface::class);
 
 		$this->api = new Api(self::ENDPOINT, $this->credential, $this->client->reveal());
+		$this->api->setOptions(0); // Disable automapping.
 	}
 
 	/**
@@ -79,24 +80,16 @@ class ApiTest extends AbstractTestCase
 			'/rest/api/2/search',
 			array(
 				'jql' => 'test',
-				'startAt' => 0,
+				'startAt' => 5,
 				'maxResults' => 2,
 				'fields' => 'description',
 			),
 			$response
 		);
 
-		// Field auto-expanding would trigger this call.
-		$this->expectClientCall(
-			Api::REQUEST_GET,
-			'/rest/api/2/field',
-			array(),
-			file_get_contents(__DIR__ . '/resources/api_field.json')
-		);
-
 		$this->assertApiResponse(
 			$response,
-			$this->api->search('test', 0, 2, 'description')
+			$this->api->search('test', 5, 2, 'description')
 		);
 	}
 
