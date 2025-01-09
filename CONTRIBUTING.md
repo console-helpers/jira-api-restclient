@@ -35,6 +35,17 @@ Then run the unit tests as per normal.
 
 N.B. you can study the `.github/workflows/tests.yml` file to see how we run these tests on our build servers by way of example.
 
+### OPTIONAL: Creating a LIVE test locally
+
+1. copy `phpunit.xml.dist` file into `phpunit.xml` file
+2. in the `phpunit.xml` file:
+ * uncomment part, where `LIVE_TEST_ENDPOINT`, `LIVE_TEST_USERNAME` and `LIVE_TEST_PASSWORD` environment variables are defined
+ * populate them with the corresponding values
+3. write the desired LIVE test in the `ApiTest::testLive` method (e.g. `$api->addWorklog('JRA-12', '12m');`)
+4. run it using `vendor/bin/phpunit --filter testLive` command
+5. confirm, that results in your Jira instance are as expected
+6. rollback changes to the `ApiTest::testLive` method before sending a PR
+
 ### Running Test Suite
 
 Make sure that you don't break anything with your changes by running:

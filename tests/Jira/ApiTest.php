@@ -5,6 +5,7 @@ namespace Tests\chobie\Jira;
 
 use chobie\Jira\Api;
 use chobie\Jira\Api\Authentication\AuthenticationInterface;
+use chobie\Jira\Api\Authentication\Basic;
 use chobie\Jira\Api\Result;
 use chobie\Jira\IssueType;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -495,6 +496,21 @@ class ApiTest extends AbstractTestCase
 		$this->assertEquals(json_decode($response, true), $actual, 'The response is json-decoded.');
 	}
 
+	public function testLive()
+	{
+		if ( empty($_SERVER['LIVE_TEST_ENDPOINT']) ) {
+			$this->markTestSkipped('The "LIVE_TEST_ENDPOINT" environment variable not set.');
+		}
+
+		$api = new Api(
+			$_SERVER['LIVE_TEST_ENDPOINT'],
+			new Basic($_SERVER['LIVE_TEST_USERNAME'], $_SERVER['LIVE_TEST_PASSWORD'])
+		);
+
+		// Write you test here, but don't commit.
+		$this->assertTrue(true);
+	}
+
 	/**
 	 * Expects a particular client call.
 	 *
@@ -510,7 +526,7 @@ class ApiTest extends AbstractTestCase
 	protected function expectClientCall(
 		$method,
 		$url,
-		$data = array(),
+		$data,
 		$return_value,
 		$is_file = false,
 		$debug = false
