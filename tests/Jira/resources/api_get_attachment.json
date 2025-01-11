@@ -1,0 +1,23 @@
+{
+  "self": "https://test.atlassian.net/rest/api/2/attachment/18700",
+  "filename": "2016-04-04 10.02.45.jpg",
+  "author": {
+    "self": "https://test.atlassian.net/rest/api/2/user?username=joost.pastoor",
+    "key": "joost.pastoor",
+    "name": "joost.pastoor",
+    "avatarUrls": {
+      "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost.pastoor&avatarId=10502",
+      "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost.pastoor&avatarId=10502",
+      "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost.pastoor&avatarId=10502",
+      "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost.pastoor&avatarId=10502"
+    },
+    "displayName": "Ernst van Rijn",
+    "active": true
+  },
+  "created": "2016-04-04T10:04:07.537+0200",
+  "size": 4097662,
+  "mimeType": "image/jpeg",
+  "properties": {},
+  "content": "https://test.atlassian.net/secure/attachment/18700/2016-04-04+10.02.45.jpg",
+  "thumbnail": "https://test.atlassian.net/secure/thumbnail/18700/_thumb_18700.png"
+}
