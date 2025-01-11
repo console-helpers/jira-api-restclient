@@ -1,0 +1,52 @@
+{
+  "expand": "description,lead,url,projectKeys",
+  "self": "https://test.atlassian.net/rest/api/2/project/10500",
+  "id": "10500",
+  "key": "ONEDS",
+  "description": "",
+  "lead": {
+    "self": "https://test.atlassian.net/rest/api/2/user?username=joost.pastoor",
+    "key": "joost.pastoor",
+    "name": "joost.pastoor",
+    "avatarUrls": {
+      "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost.pastoor&avatarId=10607",
+      "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost.pastoor&avatarId=10607",
+      "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost.pastoor&avatarId=10607",
+      "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost.pastoor&avatarId=10607"
+    },
+    "displayName": "Joost Pastoor",
+    "active": true
+  },
+  "components": [],
+  "issueTypes": [
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issuetype/1",
+      "id": "1",
+      "description": "A problem which impairs or prevents the functions of the product.",
+      "iconUrl": "https://test.atlassian.net/secure/viewavatar?size=xsmall&avatarId=11103&avatarType=issuetype",
+      "name": "Bug",
+      "subtask": false,
+      "avatarId": 11103
+    }
+  ],
+  "assigneeType": "UNASSIGNED",
+  "versions": [],
+  "name": "1D Sound",
+  "roles": {
+    "atlassian-addons-project-access": "https://test.atlassian.net/rest/api/2/project/10500/role/10200",
+    "Service Desk Team": "https://test.atlassian.net/rest/api/2/project/10500/role/10301",
+    "Developers": "https://test.atlassian.net/rest/api/2/project/10500/role/10001",
+    "Service Desk Customers": "https://test.atlassian.net/rest/api/2/project/10500/role/10300",
+    "Service Desk Collaborators": "https://test.atlassian.net/rest/api/2/project/10500/role/10302",
+    "Administrators": "https://test.atlassian.net/rest/api/2/project/10500/role/10002",
+    "Users": "https://test.atlassian.net/rest/api/2/project/10500/role/10000",
+    "Tempo Project Managers": "https://test.atlassian.net/rest/api/2/project/10500/role/10100"
+  },
+  "avatarUrls": {
+    "48x48": "https://test.atlassian.net/secure/projectavatar?pid=10500&avatarId=10011",
+    "24x24": "https://test.atlassian.net/secure/projectavatar?size=small&pid=10500&avatarId=10011",
+    "16x16": "https://test.atlassian.net/secure/projectavatar?size=xsmall&pid=10500&avatarId=10011",
+    "32x32": "https://test.atlassian.net/secure/projectavatar?size=medium&pid=10500&avatarId=10011"
+  },
+  "projectTypeKey": "software"
+}

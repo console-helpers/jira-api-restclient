@@ -23,4 +23,20 @@ final class ProjectsApiTest extends AbstractApiTest
 		$this->assertApiResponse($response, $this->api->getProjects());
 	}
 
+	public function testGetProject()
+	{
+		$response = file_get_contents(__DIR__ . '/resources/api_get_project.json');
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/project/TST',
+			array(),
+			$response
+		);
+
+		$this->assertEquals(
+			json_decode($response, true),
+			$this->api->getProject('TST')
+		);
+	}
+
 }
