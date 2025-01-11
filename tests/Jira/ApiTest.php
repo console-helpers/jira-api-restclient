@@ -456,4 +456,18 @@ class ApiTest extends AbstractApiTest
 		$this->assertEquals($expected, $actual);
 	}
 
+	public function testGetAttachmentsMetaInformation()
+	{
+		$response = file_get_contents(__DIR__ . '/resources/api_get_attachments_meta.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/attachment/meta',
+			array(),
+			$response
+		);
+
+		$this->assertApiResponse($response, $this->api->getAttachmentsMetaInformation());
+	}
+
 }
