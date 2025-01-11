@@ -860,7 +860,7 @@ class Api
 	 * @param string $issue_key Issue key.
 	 * @param array  $watchers  Watchers.
 	 *
-	 * @return Result|false
+	 * @return (Result|false)[]
 	 */
 	public function setWatchers($issue_key, array $watchers)
 	{

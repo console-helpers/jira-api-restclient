@@ -274,6 +274,33 @@ class ApiTest extends AbstractTestCase
 		$this->api->downloadAttachment('https://other.jira-instance.com/rest/api/2/attachment/content/12345');
 	}
 
+	public function testSetWatchers()
+	{
+		$errored_response = '{"errorMessages":[],"errors":{}}';
+
+		$this->expectClientCall(
+			Api::REQUEST_POST,
+			'/rest/api/2/issue/JRE-123/watchers',
+			'account-id-one',
+			'' // For successful operation an empty string is returned.
+		);
+		$this->expectClientCall(
+			Api::REQUEST_POST,
+			'/rest/api/2/issue/JRE-123/watchers',
+			'account-id-two',
+			$errored_response // For a failed operation an error list is returned.
+		);
+
+		// Can't use "assertSame" due to objected, but "assertEquals" would consider "false" and "" the same.
+		$this->assertEquals(
+			array(
+				false,
+				new Result(json_decode($errored_response, true)),
+			),
+			$this->api->setWatchers('JRE-123', array('account-id-one', 'account-id-two'))
+		);
+	}
+
 	/**
 	 * @dataProvider createRemoteLinkDataProvider
 	 */
