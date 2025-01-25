@@ -579,16 +579,17 @@ class Api
 	/**
 	 * Creates an issue.
 	 *
-	 * @param string $project_key Project key.
-	 * @param string $summary     Summary.
-	 * @param string $issue_type  Issue type.
-	 * @param array  $options     Options.
+	 * @param string $project_key  Project key.
+	 * @param string $summary      Summary.
+	 * @param string $issue_type   Issue type.
+	 * @param array  $other_fields Other fields.
 	 *
 	 * @return Result|false
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-rest-api-2-issue-post
 	 */
-	public function createIssue($project_key, $summary, $issue_type, array $options = array())
+	public function createIssue($project_key, $summary, $issue_type, array $other_fields = array())
 	{
-		$default = array(
+		$default_fields = array(
 			'project' => array(
 				'key' => $project_key,
 			),
@@ -598,9 +599,9 @@ class Api
 			),
 		);
 
-		$default = array_merge($default, $options);
+		$fields = array_merge($default_fields, $other_fields);
 
-		return $this->api(self::REQUEST_POST, '/rest/api/2/issue/', array('fields' => $default));
+		return $this->api(self::REQUEST_POST, '/rest/api/2/issue', array('fields' => $fields));
 	}
 
 	/**

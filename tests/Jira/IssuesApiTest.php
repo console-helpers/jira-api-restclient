@@ -61,4 +61,68 @@ final class IssuesApiTest extends AbstractApiTest
 		$this->assertFalse($this->api->editIssue($issue_key, $params));
 	}
 
+	public function testCreateIssueWithoutOtherFields()
+	{
+		$params = array(
+			'fields' => array(
+				'project' => array(
+					'key' => 'POR-1',
+				),
+				'summary' => 'New issue summary',
+				'issuetype' => array(
+					'id' => '10034',
+				),
+			),
+		);
+
+		$response = file_get_contents(__DIR__ . '/resources/api_create_issue.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_POST,
+			'/rest/api/2/issue',
+			$params,
+			$response
+		);
+
+		$this->assertApiResponse(
+			$response,
+			$this->api->createIssue('POR-1', 'New issue summary', '10034')
+		);
+	}
+
+	public function testCreateIssueWithOtherFields()
+	{
+		$params = array(
+			'fields' => array(
+				'project' => array(
+					'key' => 'POR-1',
+				),
+				'summary' => 'New issue summary',
+				'issuetype' => array(
+					'name' => 'Bug', // Replaced.
+				),
+				'description' => 'New issue description', // Added.
+			),
+		);
+
+		$response = file_get_contents(__DIR__ . '/resources/api_create_issue.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_POST,
+			'/rest/api/2/issue',
+			$params,
+			$response
+		);
+
+		$this->assertApiResponse(
+			$response,
+			$this->api->createIssue(
+				'POR-1',
+				'New issue summary',
+				'10034',
+				array('description' => 'New issue description', 'issuetype' => array('name' => 'Bug'))
+			)
+		);
+	}
+
 }
