@@ -928,6 +928,7 @@ class Api
 	 * @param string $project_key Project key.
 	 *
 	 * @return array
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-components/#api-rest-api-2-project-projectidorkey-components-get
 	 * @since  2.0.0
 	 */
 	public function getProjectComponents($project_key)

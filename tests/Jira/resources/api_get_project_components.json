@@ -1,0 +1,32 @@
+[
+	{
+		"self": "https://test.atlassian.net/rest/api/2/component/10068",
+		"id": "10068",
+		"name": "Admin Interfaces",
+		"assigneeType": "PROJECT_DEFAULT",
+		"realAssigneeType": "PROJECT_DEFAULT",
+		"isAssigneeTypeValid": false,
+		"project": "TST",
+		"projectId": 10047
+	},
+	{
+		"self": "https://test.atlassian.net/rest/api/2/component/10069",
+		"id": "10069",
+		"name": "Build",
+		"assigneeType": "PROJECT_DEFAULT",
+		"realAssigneeType": "PROJECT_DEFAULT",
+		"isAssigneeTypeValid": false,
+		"project": "TST",
+		"projectId": 10047
+	},
+	{
+		"self": "https://test.atlassian.net/rest/api/2/component/10070",
+		"id": "10070",
+		"name": "Caching",
+		"assigneeType": "PROJECT_DEFAULT",
+		"realAssigneeType": "PROJECT_DEFAULT",
+		"isAssigneeTypeValid": false,
+		"project": "TST",
+		"projectId": 10047
+	}
+]
