@@ -1,0 +1,6 @@
+{
+  "Service Desk Team": "https://test.atlassian.net/rest/api/2/project/10500/role/10301",
+  "Developers": "https://test.atlassian.net/rest/api/2/project/10500/role/10001",
+  "Administrators": "https://test.atlassian.net/rest/api/2/project/10500/role/10002",
+  "Users": "https://test.atlassian.net/rest/api/2/project/10500/role/10000"
+}

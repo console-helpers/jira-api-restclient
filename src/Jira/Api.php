@@ -281,7 +281,8 @@ class Api
 	 *
 	 * @param string $project_key Project key.
 	 *
-	 * @return array|false
+	 * @return array
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-roles/#api-rest-api-2-role-get
 	 */
 	public function getRoles($project_key)
 	{
