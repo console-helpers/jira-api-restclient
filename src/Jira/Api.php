@@ -292,8 +292,8 @@ class Api
 	/**
 	 * Returns role details.
 	 *
-	 * @param string $project_key Project key.
-	 * @param string $role_id     Role ID.
+	 * @param string  $project_key Project key.
+	 * @param integer $role_id     Role ID.
 	 *
 	 * @return array|false
 	 */

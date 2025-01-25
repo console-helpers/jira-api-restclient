@@ -1,0 +1,29 @@
+{
+  "self": "https://test.atlassian.net/rest/api/2/project/10500/role/10200",
+  "name": "atlassian-addons-project-access",
+  "id": 10200,
+  "description": "A project role that represents Connect add-ons declaring a scope that requires more than read issue permissions",
+  "actors": [
+    {
+      "id": 15301,
+      "displayName": "Epic Sum Up - Free",
+      "type": "atlassian-user-role-actor",
+      "name": "addon_aptis.plugins.epicSumUpFree",
+      "avatarUrl": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10122"
+    },
+    {
+      "id": 11701,
+      "displayName": "Gantt Cloud",
+      "type": "atlassian-user-role-actor",
+      "name": "addon_eu.wisoft.gantt-ondemand",
+      "avatarUrl": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10122"
+    },
+    {
+      "id": 14601,
+      "displayName": "Zendesk for JIRA",
+      "type": "atlassian-user-role-actor",
+      "name": "addon_zendesk_for_jira",
+      "avatarUrl": "https://test.atlassian.net/secure/useravatar?size=xsmall&avatarId=10122"
+    }
+  ]
+}
