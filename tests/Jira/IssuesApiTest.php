@@ -163,4 +163,24 @@ final class IssuesApiTest extends AbstractApiTest
 		);
 	}
 
+	public function testTransition()
+	{
+		$params = array(
+			'transition' => array(
+				'id' => 123,
+			),
+		);
+
+		$this->expectClientCall(
+			Api::REQUEST_POST,
+			'/rest/api/2/issue/POR-1/transitions',
+			$params,
+			false // False is returned because there is no content (204).
+		);
+
+		$this->assertFalse(
+			$this->api->transition('POR-1', $params)
+		);
+	}
+
 }
