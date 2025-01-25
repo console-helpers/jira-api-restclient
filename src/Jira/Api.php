@@ -178,20 +178,20 @@ class Api
 	 * Get fields definitions.
 	 *
 	 * @return array
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-fields/#api-rest-api-2-field-get
 	 */
 	public function getFields()
 	{
 		// Fetch fields when the method is called for the first time.
 		if ( $this->fields === null ) {
-			$fields = array();
-			$result = $this->api(self::REQUEST_GET, '/rest/api/2/field', array(), true);
+			$ret = array();
+			$fields = $this->api(self::REQUEST_GET, '/rest/api/2/field', array(), true);
 
-			/* set hash key as custom field id */
-			foreach ( $result as $field ) {
-				$fields[$field['id']] = $field;
+			foreach ( $fields as $field_data ) {
+				$ret[$field_data['id']] = $field_data;
 			}
 
-			$this->fields = $fields;
+			$this->fields = $ret;
 		}
 
 		return $this->fields;

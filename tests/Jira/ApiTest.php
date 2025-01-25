@@ -358,21 +358,17 @@ class ApiTest extends AbstractApiTest
 			'/rest/api/2/field',
 			array(),
 			$response
-		);
+		)->shouldBeCalledOnce();
 
-		$actual = $this->api->getFields();
-
+		// Perform the 1st call (uncached).
 		$response_decoded = json_decode($response, true);
-
 		$expected = array(
 			'issuetype' => $response_decoded[0],
 			'timespent' => $response_decoded[1],
 		);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, $this->api->getFields());
 
-		// Second time we call the method the results should be cached and not trigger an API Request.
-		$this->client->sendRequest(Api::REQUEST_GET, '/rest/api/2/field', array(), self::ENDPOINT, $this->credential)
-			->shouldNotBeCalled();
+		// Perform the 2nd call (cached).
 		$this->assertEquals($expected, $this->api->getFields(), 'Calling twice did not yield the same results');
 	}
 
