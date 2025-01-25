@@ -518,6 +518,11 @@ class Api
 		// Fetch all versions of this project.
 		$versions = $this->getVersions($project_key);
 
+		// Don't iterate versions, when API call ended with an error.
+		if ( array_key_exists('errorMessages', $versions) || array_key_exists('errors', $versions) ) {
+			return null;
+		}
+
 		// Filter results on the name.
 		$matching_versions = array_filter($versions, function (array $version) use ($name) {
 			return $version['name'] == $name;
@@ -528,7 +533,7 @@ class Api
 			return null;
 		}
 
-		// Multiple results should not happen since name is unique.
+		// Multiple results should not happen since the name is unique.
 		return reset($matching_versions);
 	}
 

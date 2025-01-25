@@ -141,31 +141,43 @@ final class ProjectVersionsApiTest extends AbstractApiTest
 
 	public function testFindVersionByName()
 	{
-		$project_key = 'POR';
-		$version_id = '14206';
-		$version_name = '3.36.0';
-
 		$versions = array(
 			array('id' => '14205', 'name' => '3.62.0'),
-			array('id' => $version_id, 'name' => $version_name),
+			array('id' => '14206', 'name' => '3.36.0'),
 			array('id' => '14207', 'name' => '3.66.0'),
 		);
 
 		$this->expectClientCall(
 			Api::REQUEST_GET,
-			'/rest/api/2/project/' . $project_key . '/versions',
+			'/rest/api/2/project/POR/versions',
 			array(),
 			json_encode($versions)
 		);
 
 		$this->assertEquals(
-			array('id' => $version_id, 'name' => $version_name),
-			$this->api->findVersionByName($project_key, $version_name),
+			array('id' => '14206', 'name' => '3.36.0'),
+			$this->api->findVersionByName('POR', '3.36.0'),
 			'Version found'
 		);
 
 		$this->assertNull(
-			$this->api->findVersionByName($project_key, 'i_do_not_exist')
+			$this->api->findVersionByName('POR', 'i_do_not_exist'),
+			'Version not found'
+		);
+	}
+
+	public function testFindVersionByNameError()
+	{
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/project/POR/versions',
+			array(),
+			'{"errorMessages":["No project could be found with key \'POR\'."],"errors":{}}'
+		);
+
+		$this->assertNull(
+			$this->api->findVersionByName('POR', 'any-version'),
+			'Project not found'
 		);
 	}
 
