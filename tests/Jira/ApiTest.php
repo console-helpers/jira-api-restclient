@@ -12,7 +12,7 @@ use chobie\Jira\IssueType;
  *
  * @package Tests\chobie\Jira
  */
-class ApiTest extends AbstractApiTest
+class ApiTest extends AbstractApiTestCase
 {
 
 	/**

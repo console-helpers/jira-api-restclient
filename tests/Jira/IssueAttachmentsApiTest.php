@@ -7,7 +7,7 @@ namespace Tests\chobie\Jira;
 use chobie\Jira\Api;
 use chobie\Jira\Api\Exception;
 
-final class IssueAttachmentsApiTest extends AbstractApiTest
+final class IssueAttachmentsApiTest extends AbstractApiTestCase
 {
 
 	public function testCreateAttachmentWithAutomaticAttachmentName()

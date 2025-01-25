@@ -6,7 +6,7 @@ namespace Tests\chobie\Jira;
 
 use chobie\Jira\Api;
 
-final class ProjectRolesApiTest extends AbstractApiTest
+final class ProjectRolesApiTest extends AbstractApiTestCase
 {
 
 	public function testGetProjectRoles()

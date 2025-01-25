@@ -6,7 +6,7 @@ namespace Tests\chobie\Jira;
 
 use chobie\Jira\Api;
 
-final class IssueCommentsApiTest extends AbstractApiTest
+final class IssueCommentsApiTest extends AbstractApiTestCase
 {
 
 	/**

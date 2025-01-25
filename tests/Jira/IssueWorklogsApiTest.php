@@ -6,7 +6,7 @@ namespace Tests\chobie\Jira;
 
 use chobie\Jira\Api;
 
-final class IssueWorklogsApiTest extends AbstractApiTest
+final class IssueWorklogsApiTest extends AbstractApiTestCase
 {
 
 	public function testGetWorklogs()

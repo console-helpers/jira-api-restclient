@@ -11,7 +11,7 @@ use chobie\Jira\Api\Result;
 use Prophecy\Prophecy\MethodProphecy;
 use Prophecy\Prophecy\ObjectProphecy;
 
-abstract class AbstractApiTest extends AbstractTestCase
+abstract class AbstractApiTestCase extends AbstractTestCase
 {
 
 	const ENDPOINT = 'http://jira.company.com';
