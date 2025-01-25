@@ -8,6 +8,7 @@ use chobie\Jira\Api;
 use chobie\Jira\Api\Authentication\AuthenticationInterface;
 use chobie\Jira\Api\Client\ClientInterface;
 use chobie\Jira\Api\Result;
+use Prophecy\Prophecy\MethodProphecy;
 use Prophecy\Prophecy\ObjectProphecy;
 
 abstract class AbstractApiTest extends AbstractTestCase
@@ -76,7 +77,7 @@ abstract class AbstractApiTest extends AbstractTestCase
 	 * @param boolean      $is_file      This is a file upload request.
 	 * @param boolean      $debug        Debug this request.
 	 *
-	 * @return void
+	 * @return MethodProphecy
 	 */
 	protected function expectClientCall(
 		$method,
@@ -86,7 +87,7 @@ abstract class AbstractApiTest extends AbstractTestCase
 		$is_file = false,
 		$debug = false
 	) {
-		$this->client
+		return $this->client
 			->sendRequest($method, $url, $data, self::ENDPOINT, $this->credential, $is_file, $debug)
 			->willReturn($return_value)
 			->shouldBeCalled();
