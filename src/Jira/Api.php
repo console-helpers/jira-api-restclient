@@ -534,21 +534,21 @@ class Api
 	 * Get available priorities.
 	 *
 	 * @return array
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-priorities/#api-rest-api-2-priority-get
 	 * @since  2.0.0
 	 */
 	public function getPriorities()
 	{
 		// Fetch priorities when the method is called for the first time.
 		if ( $this->priorities === null ) {
-			$priorities = array();
-			$result = $this->api(self::REQUEST_GET, '/rest/api/2/priority', array(), true);
+			$ret = array();
+			$priorities = $this->api(self::REQUEST_GET, '/rest/api/2/priority', array(), true);
 
-			/* set hash key as custom field id */
-			foreach ( $result as $priority ) {
-				$priorities[$priority['id']] = $priority;
+			foreach ( $priorities as $priority_data ) {
+				$ret[$priority_data['id']] = $priority_data;
 			}
 
-			$this->priorities = $priorities;
+			$this->priorities = $ret;
 		}
 
 		return $this->priorities;
