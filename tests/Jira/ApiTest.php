@@ -335,21 +335,17 @@ class ApiTest extends AbstractApiTest
 			'/rest/api/2/resolution',
 			array(),
 			$response
-		);
+		)->shouldBeCalledOnce();
 
-		$actual = $this->api->getResolutions();
-
+		// Perform the 1st call (uncached).
 		$response_decoded = json_decode($response, true);
-
 		$expected = array(
 			'1' => $response_decoded[0],
 			'10000' => $response_decoded[1],
 		);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, $this->api->getResolutions());
 
-		// Second time we call the method the results should be cached and not trigger an API Request.
-		$this->client->sendRequest(Api::REQUEST_GET, '/rest/api/2/resolution', array(), self::ENDPOINT, $this->credential)
-			->shouldNotBeCalled();
+		// Perform the 2nd call (cached).
 		$this->assertEquals($expected, $this->api->getResolutions(), 'Calling twice did not yield the same results');
 	}
 

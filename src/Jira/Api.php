@@ -946,20 +946,21 @@ class Api
 	 * Returns a list of all resolutions.
 	 *
 	 * @return array
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-resolutions/#api-rest-api-2-resolution-get
 	 * @since  2.0.0
 	 */
 	public function getResolutions()
 	{
 		// Fetch resolutions when the method is called for the first time.
 		if ( $this->resolutions === null ) {
-			$resolutions = array();
-			$result = $this->api(self::REQUEST_GET, '/rest/api/2/resolution', array(), true);
+			$ret = array();
+			$resolutions = $this->api(self::REQUEST_GET, '/rest/api/2/resolution', array(), true);
 
-			foreach ( $result as $resolution ) {
-				$resolutions[$resolution['id']] = $resolution;
+			foreach ( $resolutions as $resolution_data ) {
+				$ret[$resolution_data['id']] = $resolution_data;
 			}
 
-			$this->resolutions = $resolutions;
+			$this->resolutions = $ret;
 		}
 
 		return $this->resolutions;
