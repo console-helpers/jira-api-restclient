@@ -125,4 +125,42 @@ final class IssuesApiTest extends AbstractApiTest
 		);
 	}
 
+	public function testGetTransitionsWithoutExtraParams()
+	{
+		$issue_key = 'POR-1';
+
+		$response = file_get_contents(__DIR__ . '/resources/api_get_transitions.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/issue/' . $issue_key . '/transitions',
+			array(),
+			$response
+		);
+
+		$this->assertApiResponse(
+			$response,
+			$this->api->getTransitions('POR-1')
+		);
+	}
+
+	public function testGetTransitionsWithExtraParams()
+	{
+		$issue_key = 'POR-1';
+
+		$response = file_get_contents(__DIR__ . '/resources/api_get_transitions.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/issue/' . $issue_key . '/transitions',
+			array('sortByOpsBarAndStatus' => true),
+			$response
+		);
+
+		$this->assertApiResponse(
+			$response,
+			$this->api->getTransitions('POR-1', array('sortByOpsBarAndStatus' => true))
+		);
+	}
+
 }

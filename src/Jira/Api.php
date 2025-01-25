@@ -453,8 +453,9 @@ class Api
 	 * @param array  $params    Params.
 	 *
 	 * @return Result|false
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-rest-api-2-issue-issueidorkey-transitions-get
 	 */
-	public function getTransitions($issue_key, array $params)
+	public function getTransitions($issue_key, array $params = array())
 	{
 		return $this->api(self::REQUEST_GET, sprintf('/rest/api/2/issue/%s/transitions', $issue_key), $params);
 	}
