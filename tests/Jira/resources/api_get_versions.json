@@ -1,0 +1,34 @@
+[
+	{
+		"self": "https://test.atlassian.net/rest/api/2/version/10404",
+		"id": "10404",
+		"name": "4.3.9",
+		"archived": false,
+		"released": true,
+		"releaseDate": "2008-10-20",
+		"userReleaseDate": "20/Oct/08",
+		"projectId": 10047
+	},
+	{
+		"self": "https://test.atlassian.net/rest/api/2/version/10381",
+		"id": "10381",
+		"description": "First Open Source release",
+		"name": "5.0.0",
+		"archived": false,
+		"released": true,
+		"releaseDate": "2009-07-25",
+		"userReleaseDate": "25/Jul/09",
+		"projectId": 10047
+	},
+	{
+		"self": "https://test.atlassian.net/rest/api/2/version/10382",
+		"id": "10382",
+		"description": "Bug fixes and some visual features.",
+		"name": "5.0.1",
+		"archived": false,
+		"released": true,
+		"releaseDate": "2009-09-26",
+		"userReleaseDate": "26/Sep/09",
+		"projectId": 10047
+	}
+]

@@ -9,6 +9,24 @@ use chobie\Jira\Api;
 final class ProjectVersionsApiTest extends AbstractApiTest
 {
 
+	public function testGetVersions()
+	{
+		$project_key = 'PROJ';
+		$response = file_get_contents(__DIR__ . '/resources/api_get_versions.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/project/' . $project_key . '/versions',
+			array(),
+			$response
+		);
+
+		$this->assertEquals(
+			json_decode($response, true),
+			$this->api->getVersions($project_key)
+		);
+	}
+
 	public function testCreateVersionWithoutCustomParams()
 	{
 		$response = file_get_contents(__DIR__ . '/resources/api_create_version.json');

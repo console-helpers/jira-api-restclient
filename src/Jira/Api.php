@@ -496,7 +496,8 @@ class Api
 	 *
 	 * @param string $project_key Project key.
 	 *
-	 * @return array|false
+	 * @return array
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-project-versions/#api-rest-api-2-project-projectidorkey-versions-get
 	 */
 	public function getVersions($project_key)
 	{
