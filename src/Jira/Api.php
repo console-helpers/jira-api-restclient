@@ -413,7 +413,7 @@ class Api
 	 * @return Result|false
 	 * @since  2.0.0
 	 */
-	public function getWorklogs($issue_key, array $params)
+	public function getWorklogs($issue_key, array $params = array())
 	{
 		return $this->api(self::REQUEST_GET, sprintf('/rest/api/2/issue/%s/worklog', $issue_key), $params);
 	}

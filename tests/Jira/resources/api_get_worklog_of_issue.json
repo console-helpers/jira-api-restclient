@@ -1,0 +1,89 @@
+{
+  "startAt": 0,
+  "maxResults": 2,
+  "total": 2,
+  "worklogs": [
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issue/10100/worklog/10001",
+      "author": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+        "name": "joost",
+        "key": "joost",
+        "emailAddress": "joost.pastoor@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+        },
+        "displayName": "Joost Pastoor",
+        "active": true,
+        "timeZone": "Europe/Berlin"
+      },
+      "updateAuthor": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+        "name": "joost",
+        "key": "joost",
+        "emailAddress": "joost.pastoor@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+        },
+        "displayName": "Joost Pastoor",
+        "active": true,
+        "timeZone": "Europe/Berlin"
+      },
+      "comment": "",
+      "created": "2013-05-13T15:53:48.236+0200",
+      "updated": "2013-05-13T15:53:48.236+0200",
+      "started": "2013-05-13T15:53:00.000+0200",
+      "timeSpent": "1d",
+      "timeSpentSeconds": 28800,
+      "id": "10001",
+      "issueId": "10100"
+    },
+    {
+      "self": "https://test.atlassian.net/rest/api/2/issue/10100/worklog/31214",
+      "author": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+        "name": "joost",
+        "key": "joost",
+        "emailAddress": "joost.pastoor@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+        },
+        "displayName": "Joost Pastoor",
+        "active": true,
+        "timeZone": "Europe/Berlin"
+      },
+      "updateAuthor": {
+        "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+        "name": "joost",
+        "key": "joost",
+        "emailAddress": "joost.pastoor@test.com",
+        "avatarUrls": {
+          "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+          "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+          "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+          "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+        },
+        "displayName": "Joost Pastoor",
+        "active": true,
+        "timeZone": "Europe/Berlin"
+      },
+      "comment": "",
+      "created": "2016-08-03T16:57:15.840+0200",
+      "updated": "2016-08-03T16:57:15.840+0200",
+      "started": "2013-05-01T16:56:00.000+0200",
+      "timeSpent": "2w",
+      "timeSpentSeconds": 288000,
+      "id": "31214",
+      "issueId": "10100"
+    }
+  ]
+}

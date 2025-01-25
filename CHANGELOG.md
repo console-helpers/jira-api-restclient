@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - The `Api::downloadAttachment` method now throws an exception, when attempting to download from a non-Jira website by [@aik099] (#240).
+- The `$params` argument of the `Api::getWorklogs` method is now optional by [@aik099] (#...).
 
 ### Removed
 ...
