@@ -668,7 +668,7 @@ class Api
 	 * @param string|null $release_date Date in Y-m-d format (defaults to today).
 	 * @param array       $params       Optionally extra parameters.
 	 *
-	 * @return false
+	 * @return Result
 	 * @since  2.0.0
 	 */
 	public function releaseVersion($version_id, $release_date = null, array $params = array())

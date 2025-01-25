@@ -167,6 +167,8 @@ class ApiTest extends AbstractTestCase
 
 	public function testReleaseVersionAutomaticReleaseDate()
 	{
+		$response = file_get_contents(__DIR__ . '/resources/api_create_version.json');
+
 		$params = array(
 			'released' => true,
 			'releaseDate' => date('Y-m-d'),
@@ -176,14 +178,19 @@ class ApiTest extends AbstractTestCase
 			Api::REQUEST_PUT,
 			'/rest/api/2/version/111000',
 			$params,
-			''
+			$response
 		);
 
-		$this->assertFalse($this->api->releaseVersion(111000));
+		$this->assertApiResponse(
+			$response,
+			$this->api->releaseVersion(111000)
+		);
 	}
 
 	public function testReleaseVersionParameterMerging()
 	{
+		$response = file_get_contents(__DIR__ . '/resources/api_create_version.json');
+
 		$release_date = '2010-07-06';
 
 		$expected_params = array(
@@ -196,7 +203,14 @@ class ApiTest extends AbstractTestCase
 			Api::REQUEST_PUT,
 			'/rest/api/2/version/111000',
 			$expected_params,
-			''
+			$response
+		);
+
+		$this->assertApiResponse(
+			$response,
+			$this->api->releaseVersion(111000, $release_date, array('test' => 'extra'))
+		);
+	}
 		);
 
 		$this->assertFalse($this->api->releaseVersion(111000, $release_date, array('test' => 'extra')));
