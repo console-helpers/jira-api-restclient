@@ -55,4 +55,20 @@ final class ProjectsApiTest extends AbstractApiTest
 		);
 	}
 
+	public function testGetProjectIssueTypes()
+	{
+		$response = file_get_contents(__DIR__ . '/resources/api_get_project_issue_types.json');
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/project/TST/statuses',
+			array(),
+			$response
+		);
+
+		$this->assertEquals(
+			json_decode($response, true),
+			$this->api->getProjectIssueTypes('TST')
+		);
+	}
+
 }

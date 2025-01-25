@@ -1,0 +1,78 @@
+[
+	{
+		"self": "https://test.atlassian.net/rest/api/2/issuetype/10034",
+		"id": "10034",
+		"name": "Bug Report",
+		"subtask": false,
+		"statuses": [
+			{
+				"self": "https://test.atlassian.net/rest/api/2/status/10036",
+				"description": "Associated \"Differential Revision\" is reviewed and ready to be committed.",
+				"iconUrl": "https://test.atlassian.net/images/icons/statuses/generic.png",
+				"name": "Accepted",
+				"untranslatedName": "Accepted",
+				"id": "10036",
+				"statusCategory": {
+					"self": "https://test.atlassian.net/rest/api/2/statuscategory/2",
+					"id": 2,
+					"key": "new",
+					"colorName": "blue-gray",
+					"name": "To Do"
+				}
+			},
+			{
+				"self": "https://test.atlassian.net/rest/api/2/status/10037",
+				"description": "Work on the issue can be started.",
+				"iconUrl": "https://test.atlassian.net/images/icons/statuses/generic.png",
+				"name": "Scheduled",
+				"untranslatedName": "Scheduled",
+				"id": "10037",
+				"statusCategory": {
+					"self": "https://test.atlassian.net/rest/api/2/statuscategory/2",
+					"id": 2,
+					"key": "new",
+					"colorName": "blue-gray",
+					"name": "To Do"
+				}
+			}
+		]
+	},
+	{
+		"self": "https://test.atlassian.net/rest/api/2/issuetype/10035",
+		"id": "10035",
+		"name": "Refactoring",
+		"subtask": false,
+		"statuses": [
+			{
+				"self": "https://test.atlassian.net/rest/api/2/status/10036",
+				"description": "Associated \"Differential Revision\" is reviewed and ready to be committed.",
+				"iconUrl": "https://test.atlassian.net/images/icons/statuses/generic.png",
+				"name": "Accepted",
+				"untranslatedName": "Accepted",
+				"id": "10036",
+				"statusCategory": {
+					"self": "https://test.atlassian.net/rest/api/2/statuscategory/2",
+					"id": 2,
+					"key": "new",
+					"colorName": "blue-gray",
+					"name": "To Do"
+				}
+			},
+			{
+				"self": "https://test.atlassian.net/rest/api/2/status/10037",
+				"description": "Work on the issue can be started.",
+				"iconUrl": "https://test.atlassian.net/images/icons/statuses/generic.png",
+				"name": "Scheduled",
+				"untranslatedName": "Scheduled",
+				"id": "10037",
+				"statusCategory": {
+					"self": "https://test.atlassian.net/rest/api/2/statuscategory/2",
+					"id": 2,
+					"key": "new",
+					"colorName": "blue-gray",
+					"name": "To Do"
+				}
+			}
+		]
+	}
+]

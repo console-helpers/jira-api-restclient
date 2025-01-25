@@ -942,6 +942,7 @@ class Api
 	 * @param string $project_key Project key.
 	 *
 	 * @return array
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-projects/#api-rest-api-2-project-projectidorkey-statuses-get
 	 * @since  2.0.0
 	 */
 	public function getProjectIssueTypes($project_key)
