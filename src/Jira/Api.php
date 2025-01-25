@@ -477,17 +477,18 @@ class Api
 	 * Get available issue types.
 	 *
 	 * @return IssueType[]
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-types/#api-rest-api-2-issuetype-get
 	 */
 	public function getIssueTypes()
 	{
-		$result = array();
-		$types = $this->api(self::REQUEST_GET, '/rest/api/2/issuetype', array(), true);
+		$ret = array();
+		$issue_types = $this->api(self::REQUEST_GET, '/rest/api/2/issuetype', array(), true);
 
-		foreach ( $types as $issue_type ) {
-			$result[] = new IssueType($issue_type);
+		foreach ( $issue_types as $issue_type_data ) {
+			$ret[] = new IssueType($issue_type_data);
 		}
 
-		return $result;
+		return $ret;
 	}
 
 	/**
