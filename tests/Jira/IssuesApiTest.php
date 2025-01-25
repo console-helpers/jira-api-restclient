@@ -183,4 +183,53 @@ final class IssuesApiTest extends AbstractApiTest
 		);
 	}
 
+	/**
+	 * @depends testGetTransitionsWithoutExtraParams
+	 * @depends testTransition
+	 */
+	public function testCloseIssue()
+	{
+		$issue_key = 'POR-1';
+
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/issue/' . $issue_key . '/transitions',
+			array(),
+			file_get_contents(__DIR__ . '/resources/api_get_transitions.json')
+		);
+
+		$this->expectClientCall(
+			Api::REQUEST_POST,
+			'/rest/api/2/issue/POR-1/transitions',
+			array(
+				'transition' => array('id' => 171), // The "171" is transition ID for "Close Issue" transition.
+			),
+			false // False is returned because there is no content (204).
+		);
+
+		$this->api->closeIssue($issue_key);
+	}
+
+	/**
+	 * @depends testGetTransitionsWithoutExtraParams
+	 * @depends testTransition
+	 */
+	public function testCloseIssueFailure()
+	{
+		$issue_key = 'POR-1';
+
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/issue/' . $issue_key . '/transitions',
+			array(),
+			json_encode(array(
+				'transitions' => array(
+					array('name' => 'Schedule Issue'),
+				),
+			))
+		);
+
+		$this->assertSame(array(), $this->api->closeIssue($issue_key));
+	}
+
 }

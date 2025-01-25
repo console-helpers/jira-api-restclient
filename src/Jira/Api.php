@@ -893,28 +893,26 @@ class Api
 	 */
 	public function closeIssue($issue_key)
 	{
-		$result = array();
-
 		// Get available transitions.
-		$tmp_transitions = $this->getTransitions($issue_key, array());
-		$tmp_transitions_result = $tmp_transitions->getResult();
+		$tmp_transitions_result = $this->getTransitions($issue_key)->getResult();
 		$transitions = $tmp_transitions_result['transitions'];
 
 		// Look for "Close Issue" transition in issue transitions.
-		foreach ( $transitions as $v ) {
-			// Close issue if required id was found.
-			if ( $v['name'] == 'Close Issue' ) {
-				$result = $this->transition(
-					$issue_key,
-					array(
-						'transition' => array('id' => $v['id']),
-					)
-				);
-				break;
+		foreach ( $transitions as $transition_data ) {
+			if ( $transition_data['name'] !== 'Close Issue' ) {
+				continue;
 			}
+
+			// Close issue if required id was found.
+			return $this->transition(
+				$issue_key,
+				array(
+					'transition' => array('id' => $transition_data['id']),
+				)
+			);
 		}
 
-		return $result;
+		return array();
 	}
 
 	/**
