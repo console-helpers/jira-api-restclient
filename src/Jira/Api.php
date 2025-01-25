@@ -558,20 +558,20 @@ class Api
 	 * Get available statuses.
 	 *
 	 * @return array
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-status/#api-rest-api-2-statuses-get
 	 */
 	public function getStatuses()
 	{
 		// Fetch statuses when the method is called for the first time.
 		if ( $this->statuses === null ) {
-			$statuses = array();
-			$result = $this->api(self::REQUEST_GET, '/rest/api/2/status', array(), true);
+			$ret = array();
+			$statuses = $this->api(self::REQUEST_GET, '/rest/api/2/status', array(), true);
 
-			/* set hash key as custom field id */
-			foreach ( $result as $status ) {
-				$statuses[$status['id']] = $status;
+			foreach ( $statuses as $status_data ) {
+				$ret[$status_data['id']] = $status_data;
 			}
 
-			$this->statuses = $statuses;
+			$this->statuses = $ret;
 		}
 
 		return $this->statuses;
