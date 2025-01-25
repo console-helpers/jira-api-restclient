@@ -203,11 +203,18 @@ class Api
 	 * @param string $issue_key Issue key should be "YOURPROJ-221".
 	 * @param string $expand    Expand.
 	 *
-	 * @return Result|false
+	 * @return Result
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-rest-api-2-issue-issueidorkey-get
 	 */
 	public function getIssue($issue_key, $expand = '')
 	{
-		return $this->api(self::REQUEST_GET, sprintf('/rest/api/2/issue/%s', $issue_key), array('expand' => $expand));
+		$params = array();
+
+		if ( $expand !== '' ) {
+			$params['expand'] = $expand;
+		}
+
+		return $this->api(self::REQUEST_GET, sprintf('/rest/api/2/issue/%s', $issue_key), $params);
 	}
 
 	/**

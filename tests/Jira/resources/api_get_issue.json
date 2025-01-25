@@ -1,0 +1,322 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "10100",
+  "self": "https://test.atlassian.net/rest/api/2/issue/10100",
+  "key": "POR-1",
+  "fields": {
+    "issuetype": {
+      "self": "https://test.atlassian.net/rest/api/2/issuetype/4",
+      "id": "4",
+      "description": "An improvement or enhancement to an existing feature or task.",
+      "iconUrl": "https://test.atlassian.net/secure/viewavatar?size=xsmall&avatarId=11110&avatarType=issuetype",
+      "name": "Improvement",
+      "subtask": false,
+      "avatarId": 11110
+    },
+    "timespent": 316800,
+    "project": {
+      "self": "https://test.atlassian.net/rest/api/2/project/10100",
+      "id": "10100",
+      "key": "POR",
+      "name": "Portal",
+      "avatarUrls": {
+        "48x48": "https://test.atlassian.net/secure/projectavatar?pid=10100&avatarId=10401",
+        "24x24": "https://test.atlassian.net/secure/projectavatar?size=small&pid=10100&avatarId=10401",
+        "16x16": "https://test.atlassian.net/secure/projectavatar?size=xsmall&pid=10100&avatarId=10401",
+        "32x32": "https://test.atlassian.net/secure/projectavatar?size=medium&pid=10100&avatarId=10401"
+      }
+    },
+    "fixVersions": [],
+    "aggregatetimespent": 316800,
+    "resolution": {
+      "self": "https://test.atlassian.net/rest/api/2/resolution/1",
+      "id": "1",
+      "description": "A fix for this issue is checked into the tree and tested.",
+      "name": "Fixed"
+    },
+    "customfield_10500": null,
+    "customfield_10501": [],
+    "customfield_10502": null,
+    "resolutiondate": "2013-05-13T15:53:48.236+0200",
+    "workratio": 1100,
+    "lastViewed": null,
+    "watches": {
+      "self": "https://test.atlassian.net/rest/api/2/issue/POR-1/watchers",
+      "watchCount": 1,
+      "isWatching": true
+    },
+    "created": "2013-05-13T08:57:21.520+0200",
+    "customfield_10020": null,
+    "customfield_10021": "Not started",
+    "priority": {
+      "self": "https://test.atlassian.net/rest/api/2/priority/3",
+      "iconUrl": "https://test.atlassian.net/images/icons/priorities/major.svg",
+      "name": "Major",
+      "id": "3"
+    },
+    "customfield_10024": null,
+    "customfield_10300": null,
+    "labels": [
+      "esee-wp5.4"
+    ],
+    "customfield_10016": null,
+    "customfield_10017": null,
+    "customfield_10018": null,
+    "customfield_10019": null,
+    "timeestimate": 0,
+    "aggregatetimeoriginalestimate": 28800,
+    "versions": [],
+    "issuelinks": [
+      {
+        "id": "10000",
+        "self": "https://test.atlassian.net/rest/api/2/issueLink/10000",
+        "type": {
+          "id": "10003",
+          "name": "Relates",
+          "inward": "relates to",
+          "outward": "relates to",
+          "self": "https://test.atlassian.net/rest/api/2/issueLinkType/10003"
+        },
+        "outwardIssue": {
+          "id": "10101",
+          "key": "POR-2",
+          "self": "https://test.atlassian.net/rest/api/2/issue/10101",
+          "fields": {
+            "summary": "Speedup Precalced Props with Gearman",
+            "status": {
+              "self": "https://test.atlassian.net/rest/api/2/status/6",
+              "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+              "iconUrl": "https://test.atlassian.net/images/icons/statuses/closed.png",
+              "name": "Closed",
+              "id": "6",
+              "statusCategory": {
+                "self": "https://test.atlassian.net/rest/api/2/statuscategory/3",
+                "id": 3,
+                "key": "done",
+                "colorName": "green",
+                "name": "Done"
+              }
+            },
+            "priority": {
+              "self": "https://test.atlassian.net/rest/api/2/priority/3",
+              "iconUrl": "https://test.atlassian.net/images/icons/priorities/major.svg",
+              "name": "Major",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://test.atlassian.net/rest/api/2/issuetype/4",
+              "id": "4",
+              "description": "An improvement or enhancement to an existing feature or task.",
+              "iconUrl": "https://test.atlassian.net/secure/viewavatar?size=xsmall&avatarId=11110&avatarType=issuetype",
+              "name": "Improvement",
+              "subtask": false,
+              "avatarId": 11110
+            }
+          }
+        }
+      }
+    ],
+    "assignee": {
+      "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+      "name": "joost",
+      "key": "joost",
+      "emailAddress": "joost.pastoor@test.com",
+      "avatarUrls": {
+        "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+        "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+        "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+        "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+      },
+      "displayName": "Joost Pastoor",
+      "active": true,
+      "timeZone": "Europe/Berlin"
+    },
+    "updated": "2016-08-03T16:57:31.232+0200",
+    "status": {
+      "self": "https://test.atlassian.net/rest/api/2/status/5",
+      "description": "A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.",
+      "iconUrl": "https://test.atlassian.net/images/icons/statuses/resolved.png",
+      "name": "Resolved",
+      "id": "5",
+      "statusCategory": {
+        "self": "https://test.atlassian.net/rest/api/2/statuscategory/3",
+        "id": 3,
+        "key": "done",
+        "colorName": "green",
+        "name": "Done"
+      }
+    },
+    "components": [],
+    "timeoriginalestimate": 28800,
+    "description": "- Both hourly reports and passings",
+    "customfield_10012": null,
+    "customfield_10013": null,
+    "customfield_10014": null,
+    "timetracking": {
+      "originalEstimate": "1d",
+      "remainingEstimate": "0m",
+      "timeSpent": "2w 1d",
+      "originalEstimateSeconds": 28800,
+      "remainingEstimateSeconds": 0,
+      "timeSpentSeconds": 316800
+    },
+    "customfield_10015": null,
+    "customfield_10401": null,
+    "customfield_10006": "22",
+    "customfield_10600": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1956b56",
+    "customfield_10007": null,
+    "customfield_10008": null,
+    "attachment": [],
+    "aggregatetimeestimate": 0,
+    "summary": "Convert TrainMeasurement passings to Precalculated Property",
+    "creator": {
+      "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+      "name": "joost",
+      "key": "joost",
+      "emailAddress": "joost.pastoor@test.com",
+      "avatarUrls": {
+        "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+        "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+        "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+        "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+      },
+      "displayName": "Joost Pastoor",
+      "active": true,
+      "timeZone": "Europe/Berlin"
+    },
+    "subtasks": [],
+    "reporter": {
+      "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+      "name": "joost",
+      "key": "joost",
+      "emailAddress": "joost.pastoor@test.com",
+      "avatarUrls": {
+        "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+        "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+        "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+        "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+      },
+      "displayName": "Joost Pastoor",
+      "active": true,
+      "timeZone": "Europe/Berlin"
+    },
+    "customfield_10000": "3_*:*_1_*:*_0_*|*_1_*:*_1_*:*_307391",
+    "aggregateprogress": {
+      "progress": 316800,
+      "total": 316800,
+      "percent": 100
+    },
+    "customfield_10001": null,
+    "customfield_10200": "0|10004g:",
+    "customfield_10002": null,
+    "customfield_10003": null,
+    "customfield_10400": null,
+    "environment": null,
+    "duedate": null,
+    "progress": {
+      "progress": 316800,
+      "total": 316800,
+      "percent": 100
+    },
+    "comment": {
+      "comments": [],
+      "maxResults": 0,
+      "total": 0,
+      "startAt": 0
+    },
+    "votes": {
+      "self": "https://test.atlassian.net/rest/api/2/issue/POR-1/votes",
+      "votes": 0,
+      "hasVoted": false
+    },
+    "worklog": {
+      "startAt": 0,
+      "maxResults": 20,
+      "total": 2,
+      "worklogs": [
+        {
+          "self": "https://test.atlassian.net/rest/api/2/issue/10100/worklog/10001",
+          "author": {
+            "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+            "name": "joost",
+            "key": "joost",
+            "emailAddress": "joost.pastoor@test.com",
+            "avatarUrls": {
+              "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+              "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+              "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+              "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+            },
+            "displayName": "Joost Pastoor",
+            "active": true,
+            "timeZone": "Europe/Berlin"
+          },
+          "updateAuthor": {
+            "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+            "name": "joost",
+            "key": "joost",
+            "emailAddress": "joost.pastoor@test.com",
+            "avatarUrls": {
+              "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+              "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+              "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+              "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+            },
+            "displayName": "Joost Pastoor",
+            "active": true,
+            "timeZone": "Europe/Berlin"
+          },
+          "comment": "",
+          "created": "2013-05-13T15:53:48.236+0200",
+          "updated": "2013-05-13T15:53:48.236+0200",
+          "started": "2013-05-13T15:53:00.000+0200",
+          "timeSpent": "1d",
+          "timeSpentSeconds": 28800,
+          "id": "10001",
+          "issueId": "10100"
+        },
+        {
+          "self": "https://test.atlassian.net/rest/api/2/issue/10100/worklog/31214",
+          "author": {
+            "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+            "name": "joost",
+            "key": "joost",
+            "emailAddress": "joost.pastoor@test.com",
+            "avatarUrls": {
+              "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+              "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+              "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+              "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+            },
+            "displayName": "Joost Pastoor",
+            "active": true,
+            "timeZone": "Europe/Berlin"
+          },
+          "updateAuthor": {
+            "self": "https://test.atlassian.net/rest/api/2/user?username=joost",
+            "name": "joost",
+            "key": "joost",
+            "emailAddress": "joost.pastoor@test.com",
+            "avatarUrls": {
+              "48x48": "https://test.atlassian.net/secure/useravatar?ownerId=joost&avatarId=10500",
+              "24x24": "https://test.atlassian.net/secure/useravatar?size=small&ownerId=joost&avatarId=10500",
+              "16x16": "https://test.atlassian.net/secure/useravatar?size=xsmall&ownerId=joost&avatarId=10500",
+              "32x32": "https://test.atlassian.net/secure/useravatar?size=medium&ownerId=joost&avatarId=10500"
+            },
+            "displayName": "Joost Pastoor",
+            "active": true,
+            "timeZone": "Europe/Berlin"
+          },
+          "comment": "",
+          "created": "2016-08-03T16:57:15.840+0200",
+          "updated": "2016-08-03T16:57:15.840+0200",
+          "started": "2013-05-01T16:56:00.000+0200",
+          "timeSpent": "2w",
+          "timeSpentSeconds": 288000,
+          "id": "31214",
+          "issueId": "10100"
+        }
+      ]
+    }
+  }
+}
