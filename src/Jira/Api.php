@@ -224,6 +224,7 @@ class Api
 	 * @param array  $params    Params.
 	 *
 	 * @return Result|false
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-rest-api-2-issue-issueidorkey-put
 	 */
 	public function editIssue($issue_key, array $params)
 	{
