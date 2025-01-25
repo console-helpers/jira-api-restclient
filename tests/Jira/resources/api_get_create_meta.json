@@ -1,0 +1,63 @@
+{
+	"expand": "projects",
+	"projects": [
+		{
+			"self": "https://test.atlassian.net/rest/api/2/project/10034",
+			"id": "10034",
+			"key": "PRJ1",
+			"name": "Advanced",
+			"avatarUrls": {
+				"48x48": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10400",
+				"24x24": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10400?size=small",
+				"16x16": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+				"32x32": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10400?size=medium"
+			},
+			"issuetypes": [
+				{
+					"self": "https://test.atlassian.net/rest/api/2/issuetype/10034",
+					"id": "10034",
+					"description": "A problem which impairs or prevents the functions of the product.",
+					"iconUrl": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+					"name": "Bug Report",
+					"untranslatedName": "Bug Report",
+					"subtask": false,
+					"hierarchyLevel": 0
+				},
+				{
+					"self": "https://test.atlassian.net/rest/api/2/issuetype/10035",
+					"id": "10035",
+					"description": "",
+					"iconUrl": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10310?size=medium",
+					"name": "Refactoring",
+					"untranslatedName": "Refactoring",
+					"subtask": false,
+					"hierarchyLevel": 0
+				}
+			]
+		},
+		{
+			"self": "https://test.atlassian.net/rest/api/2/project/10045",
+			"id": "10045",
+			"key": "PRJ2",
+			"name": "Bootstrap",
+			"avatarUrls": {
+				"48x48": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418",
+				"24x24": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418?size=small",
+				"16x16": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418?size=xsmall",
+				"32x32": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418?size=medium"
+			},
+			"issuetypes": [
+				{
+					"self": "https://test.atlassian.net/rest/api/2/issuetype/10034",
+					"id": "10034",
+					"description": "A problem which impairs or prevents the functions of the product.",
+					"iconUrl": "https://test.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+					"name": "Bug Report",
+					"untranslatedName": "Bug Report",
+					"subtask": false,
+					"hierarchyLevel": 0
+				}
+			]
+		}
+	]
+}

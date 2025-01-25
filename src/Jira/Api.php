@@ -331,7 +331,8 @@ class Api
 	 *                                an issue type that does not exist is not an error.
 	 * @param array $expand           Optional list of entities to expand in the response.
 	 *
-	 * @return array|false
+	 * @return array
+	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-rest-api-2-issue-createmeta-get
 	 */
 	public function getCreateMeta(
 		array $project_ids = null,
@@ -340,7 +341,7 @@ class Api
 		array $issue_type_names = null,
 		array $expand = null
 	) {
-		// Create comma separated query parameters for the supplied filters.
+		// Create comma-separated query parameters for the supplied filters.
 		$data = array();
 
 		if ( $project_ids !== null ) {

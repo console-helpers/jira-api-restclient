@@ -454,4 +454,94 @@ class ApiTest extends AbstractApiTest
 		$this->assertApiResponse($response, $this->api->getAttachmentsMetaInformation());
 	}
 
+	/**
+	 * @dataProvider getCreateMetaDataProvider
+	 */
+	public function testGetCreateMeta(
+		array $project_ids = null,
+		array $project_keys = null,
+		array $issue_type_ids = null,
+		array $issue_type_names = null,
+		array $expand = null,
+		array $params = array()
+	) {
+		$response = file_get_contents(__DIR__ . '/resources/api_get_create_meta.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/issue/createmeta',
+			$params,
+			$response
+		);
+
+		// Perform the API call.
+		$actual = $this->api->getCreateMeta($project_ids, $project_keys, $issue_type_ids, $issue_type_names, $expand);
+		$response_decoded = json_decode($response, true);
+
+		$this->assertEquals($response_decoded, $actual, 'The decoded response does not match the actual result.');
+	}
+
+	public static function getCreateMetaDataProvider()
+	{
+		return array(
+			'project_ids' => array(
+				array(123, 456),
+				null,
+				null,
+				null,
+				null,
+				array('projectIds' => '123,456'),
+			),
+			'project_names' => array(
+				null,
+				array('abc', 'def'),
+				null,
+				null,
+				null,
+				array('projectKeys' => 'abc,def'),
+			),
+			'project_ids+project_names' => array(
+				array(123, 456),
+				array('abc', 'def'),
+				null,
+				null,
+				null,
+				array('projectIds' => '123,456', 'projectKeys' => 'abc,def'),
+			),
+
+			'issue_type_ids' => array(
+				null,
+				null,
+				array(123, 456),
+				null,
+				null,
+				array('issuetypeIds' => '123,456'),
+			),
+			'issue_type_names' => array(
+				null,
+				null,
+				null,
+				array('abc', 'def'),
+				null,
+				array('issuetypeNames' => 'abc,def'),
+			),
+			'issue_type_ids+issue_type_names' => array(
+				null,
+				null,
+				array(123, 456),
+				array('abc', 'def'),
+				null,
+				array('issuetypeIds' => '123,456', 'issuetypeNames' => 'abc,def'),
+			),
+			'expand' => array(
+				null,
+				null,
+				null,
+				null,
+				array('aa', 'bb'),
+				array('expand' => 'aa,bb'),
+			),
+		);
+	}
+
 }
