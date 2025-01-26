@@ -33,7 +33,7 @@ final class ProjectsApiTest extends AbstractApiTestCase
 			$response
 		);
 
-		$this->assertApiResponse($response, $this->api->getProject('TST'), false);
+		$this->assertApiResponse($response, $this->api->getProject('TST'));
 	}
 
 	public function testGetProjectComponents()
@@ -46,7 +46,7 @@ final class ProjectsApiTest extends AbstractApiTestCase
 			$response
 		);
 
-		$this->assertApiResponse($response, $this->api->getProjectComponents('TST'), false);
+		$this->assertApiResponse($response, $this->api->getProjectComponents('TST'));
 	}
 
 	public function testGetProjectIssueTypes()
@@ -59,7 +59,7 @@ final class ProjectsApiTest extends AbstractApiTestCase
 			$response
 		);
 
-		$this->assertApiResponse($response, $this->api->getProjectIssueTypes('TST'), false);
+		$this->assertApiResponse($response, $this->api->getProjectIssueTypes('TST'));
 	}
 
 }

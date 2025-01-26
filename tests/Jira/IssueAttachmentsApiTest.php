@@ -89,7 +89,7 @@ final class IssueAttachmentsApiTest extends AbstractApiTestCase
 			$response
 		);
 
-		$this->assertApiResponse($response, $this->api->getAttachment('18700'), false);
+		$this->assertApiResponse($response, $this->api->getAttachment('18700'));
 	}
 
 }

@@ -138,11 +138,11 @@ class CurlClient implements ClientInterface
 
 		$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-		// If empty result and status != "204 No Content".
 		if ( $http_code == 401 ) {
 			throw new UnauthorizedException('Unauthorized');
 		}
 
+		// If empty result and status != "204 No Content".
 		if ( $response === '' && !in_array($http_code, array(201, 204)) ) {
 			throw new Exception('JIRA Rest server returns unexpected result.');
 		}

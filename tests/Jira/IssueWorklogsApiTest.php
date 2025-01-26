@@ -43,7 +43,7 @@ final class IssueWorklogsApiTest extends AbstractApiTestCase
 			$response
 		);
 
-		$this->assertApiResponse($response, $this->api->addWorklog('JRA-15', $time_spent), false);
+		$this->assertApiResponse($response, $this->api->addWorklog('JRA-15', $time_spent));
 	}
 
 	public static function addWorkLogWithoutCustomParamsDataProvider()
@@ -68,8 +68,7 @@ final class IssueWorklogsApiTest extends AbstractApiTestCase
 
 		$this->assertApiResponse(
 			$response,
-			$this->api->addWorklog('JRA-15', '12m', array('started' => $started)),
-			false
+			$this->api->addWorklog('JRA-15', '12m', array('started' => $started))
 		);
 	}
 
@@ -84,7 +83,7 @@ final class IssueWorklogsApiTest extends AbstractApiTestCase
 			$response
 		);
 
-		$this->assertApiResponse($response, $this->api->deleteWorklog('JRA-15', 11256), false);
+		$this->assertApiResponse($response, $this->api->deleteWorklog('JRA-15', 11256));
 	}
 
 	public function testDeleteWorkLogWithCustomParams()
@@ -100,8 +99,7 @@ final class IssueWorklogsApiTest extends AbstractApiTestCase
 
 		$this->assertApiResponse(
 			$response,
-			$this->api->deleteWorklog('JRA-15', 11256, array('custom' => 'param')),
-			false
+			$this->api->deleteWorklog('JRA-15', 11256, array('custom' => 'param'))
 		);
 	}
 

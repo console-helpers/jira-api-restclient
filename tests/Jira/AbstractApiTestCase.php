@@ -57,7 +57,7 @@ abstract class AbstractApiTestCase extends AbstractTestCase
 	 *
 	 * @return void
 	 */
-	protected function assertApiResponse($expected_raw_response, $actual_response, $wrap_in_result = true)
+	protected function assertApiResponse($expected_raw_response, $actual_response, $wrap_in_result = false)
 	{
 		$expected = json_decode($expected_raw_response, true);
 

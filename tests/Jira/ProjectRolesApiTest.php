@@ -21,7 +21,7 @@ final class ProjectRolesApiTest extends AbstractApiTestCase
 			$response
 		);
 
-		$this->assertApiResponse($response, $this->api->getRoles($project_id), false);
+		$this->assertApiResponse($response, $this->api->getRoles($project_id));
 	}
 
 	public function testGetProjectRoleDetails()
@@ -37,7 +37,7 @@ final class ProjectRolesApiTest extends AbstractApiTestCase
 			$response
 		);
 
-		$this->assertApiResponse($response, $this->api->getRoleDetails($project_id, $role_id), false);
+		$this->assertApiResponse($response, $this->api->getRoleDetails($project_id, $role_id));
 	}
 
 }
