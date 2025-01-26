@@ -10,6 +10,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - The `Api::downloadAttachment` method now throws an exception, when attempting to download from a non-Jira website by [@aik099] (#240).
 - The `$params` argument of the `Api::getWorklogs` method is now optional by [@aik099] (#244).
 - The `$params` argument of the `Api::getTransitions` method is now optional by [@aik099] (#244).
+- Changed default `Api::api` parameter $return_as_array to TRUE by [@jpastoor] (#137).
+- Api methods (except those that return issue lists) now consistently return as associative arrays instead of Result class instance by [@jpastoor] (#137).
 
 ### Removed
 ...

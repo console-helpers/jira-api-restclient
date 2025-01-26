@@ -50,7 +50,8 @@ class ApiTest extends AbstractApiTestCase
 
 		$this->assertApiResponse(
 			$response,
-			$this->api->search('test', 5, 2, 'description')
+			$this->api->search('test', 5, 2, 'description'),
+			true
 		);
 	}
 
@@ -75,7 +76,7 @@ class ApiTest extends AbstractApiTestCase
 		$this->assertEquals(
 			array(
 				false,
-				new Result(json_decode($errored_response, true)),
+				json_decode($errored_response, true),
 			),
 			$this->api->setWatchers('JRE-123', array('account-id-one', 'account-id-two'))
 		);
@@ -207,7 +208,7 @@ class ApiTest extends AbstractApiTestCase
 
 		$this->assertEquals(
 			array('key' => 'value'),
-			$this->api->api(api::REQUEST_GET, '/rest/api/2/something', array(), true)
+			$this->api->api(api::REQUEST_GET, '/rest/api/2/something')
 		);
 	}
 
@@ -222,7 +223,7 @@ class ApiTest extends AbstractApiTestCase
 
 		$this->assertEquals(
 			new Result(array('key' => 'value')),
-			$this->api->api(api::REQUEST_GET, '/rest/api/2/something')
+			$this->api->api(api::REQUEST_GET, '/rest/api/2/something', array(), false)
 		);
 	}
 
@@ -477,7 +478,7 @@ class ApiTest extends AbstractApiTestCase
 		// Perform the API call.
 		$actual = $this->api->getCreateMeta($project_ids, $project_keys, $issue_type_ids, $issue_type_names, $expand);
 
-		$this->assertApiResponse($response, $actual, false);
+		$this->assertApiResponse($response, $actual);
 	}
 
 	public static function getCreateMetaDataProvider()
