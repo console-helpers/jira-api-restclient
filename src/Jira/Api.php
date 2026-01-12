@@ -617,28 +617,39 @@ class Api
 	/**
 	 * Query issues.
 	 *
-	 * @param string  $jql         JQL.
-	 * @param integer $start_at    Start at.
-	 * @param integer $max_results Max results.
-	 * @param string  $fields      Fields.
+	 * @param string      $jql             JQL.
+	 * @param string|null $next_page_token Next page token.
+	 * @param integer     $max_results     Max results.
+	 * @param string      $fields          Fields.
 	 *
 	 * @return Result
+	 * @throws Exception When the "$next_page_token" parameter has an invalid value.
 	 * @link   https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issue-search/#api-rest-api-2-search-get
 	 */
-	public function search($jql, $start_at = 0, $max_results = 20, $fields = '*navigable')
+	public function search($jql, $next_page_token = null, $max_results = 20, $fields = '*navigable')
 	{
-		$result = $this->api(
-			self::REQUEST_GET,
-			'/rest/api/2/search',
-			array(
-				'jql' => $jql,
-				'startAt' => $start_at,
-				'maxResults' => $max_results,
-				'fields' => $fields,
-			)
+		// Polyfill for users who don't paginate themselves.
+		if ( $next_page_token === 0 ) {
+			$next_page_token = null;
+		}
+
+		if ( !is_string($next_page_token) && $next_page_token !== null ) {
+			$error_msg = 'The "$next_page_token" value must be either null (for the first page) ';
+			$error_msg .= 'or come from the "nextPageToken" key of the previous search response.';
+			throw new Exception($error_msg);
+		}
+
+		$params = array(
+			'jql' => $jql,
+			'maxResults' => $max_results,
+			'fields' => $fields,
 		);
 
-		return $result;
+		if ( $next_page_token !== null ) {
+			$params['nextPageToken'] = $next_page_token;
+		}
+
+		return $this->api(self::REQUEST_GET, '/rest/api/2/search/jql', $params);
 	}
 
 	/**
