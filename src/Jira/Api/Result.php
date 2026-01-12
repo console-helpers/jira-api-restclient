@@ -108,7 +108,7 @@ class Result
 	 */
 	public function getIssuesCount()
 	{
-		return count($this->getIssues());
+		return isset($this->result['issues']) ? count($this->result['issues']) : 0;
 	}
 
 	/**
@@ -118,17 +118,17 @@ class Result
 	 */
 	public function getIssues()
 	{
-		if ( isset($this->result['issues']) ) {
-			$result = array();
-
-			foreach ( $this->result['issues'] as $issue ) {
-				$result[] = new Issue($issue);
-			}
-
-			return $result;
+		if ( !isset($this->result['issues']) ) {
+			return array();
 		}
 
-		return array();
+		$result = array();
+
+		foreach ( $this->result['issues'] as $issue ) {
+			$result[] = new Issue($issue);
+		}
+
+		return $result;
 	}
 
 	/**

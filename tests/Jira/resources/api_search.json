@@ -1,8 +1,5 @@
 {
-    "expand": "names,schema",
-    "startAt": 0,
-    "maxResults": 50,
-    "total": 1,
+    "isLast": true,
     "issues": [
         {
             "expand": "",

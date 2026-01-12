@@ -81,7 +81,7 @@ class WalkerTest extends AbstractTestCase
 	public function testFoundNoIssues()
 	{
 		$search_response = $this->generateSearchResponse('PRJ', 0);
-		$this->api->search('test jql', 0, 5, 'description')->willReturn($search_response);
+		$this->api->search('test jql', null, 5, 'description')->willReturn($search_response);
 
 		$walker = $this->createWalker(5);
 		$walker->push('test jql', 'description');
@@ -98,7 +98,7 @@ class WalkerTest extends AbstractTestCase
 	public function testDefaultPerPageUsed()
 	{
 		$search_response = $this->generateSearchResponse('PRJ', 50);
-		$this->api->search('test jql', 0, 50, 'description')->willReturn($search_response);
+		$this->api->search('test jql', null, 50, 'description')->willReturn($search_response);
 
 		$walker = $this->createWalker();
 		$walker->push('test jql', 'description');
@@ -118,12 +118,12 @@ class WalkerTest extends AbstractTestCase
 	public function testFoundTwoPagesOfIssues()
 	{
 		// Full 1st page.
-		$search_response1 = $this->generateSearchResponse('PRJ1', 5, 7);
-		$this->api->search('test jql', 0, 5, 'description')->willReturn($search_response1);
+		$search_response1 = $this->generateSearchResponse('PRJ1', 5, 'EgQIlMIC');
+		$this->api->search('test jql', null, 5, 'description')->willReturn($search_response1);
 
 		// Incomplete 2nd page.
-		$search_response2 = $this->generateSearchResponse('PRJ2', 2, 7);
-		$this->api->search('test jql', 5, 5, 'description')->willReturn($search_response2);
+		$search_response2 = $this->generateSearchResponse('PRJ2', 2);
+		$this->api->search('test jql', 'EgQIlMIC', 5, 'description')->willReturn($search_response2);
 
 		$walker = $this->createWalker(5);
 		$walker->push('test jql', 'description');
@@ -145,7 +145,7 @@ class WalkerTest extends AbstractTestCase
 		$this->expectException(UnauthorizedException::class);
 		$this->expectExceptionMessage('Unauthorized');
 
-		$this->api->search('test jql', 0, 5, 'description')->willThrow(new UnauthorizedException('Unauthorized'));
+		$this->api->search('test jql', null, 5, 'description')->willThrow(new UnauthorizedException('Unauthorized'));
 
 		$walker = $this->createWalker(5);
 		$walker->push('test jql', 'description');
@@ -157,7 +157,7 @@ class WalkerTest extends AbstractTestCase
 
 	public function testAnyExceptionOnFirstPage()
 	{
-		$this->api->search('test jql', 0, 5, 'description')->willThrow(new Exception('Anything'));
+		$this->api->search('test jql', null, 5, 'description')->willThrow(new Exception('Anything'));
 
 		$walker = $this->createWalker(5);
 		$walker->push('test jql', 'description');
@@ -175,11 +175,11 @@ class WalkerTest extends AbstractTestCase
 		$this->expectExceptionMessage('Unauthorized');
 
 		// Full 1st page.
-		$search_response1 = $this->generateSearchResponse('PRJ1', 5, 7);
-		$this->api->search('test jql', 0, 5, 'description')->willReturn($search_response1);
+		$search_response1 = $this->generateSearchResponse('PRJ1', 5, 'EgQIlMIC');
+		$this->api->search('test jql', null, 5, 'description')->willReturn($search_response1);
 
 		// Incomplete 2nd page.
-		$this->api->search('test jql', 5, 5, 'description')->willThrow(new UnauthorizedException('Unauthorized'));
+		$this->api->search('test jql', 'EgQIlMIC', 5, 'description')->willThrow(new UnauthorizedException('Unauthorized'));
 
 		$walker = $this->createWalker(5);
 		$walker->push('test jql', 'description');
@@ -192,11 +192,11 @@ class WalkerTest extends AbstractTestCase
 	public function testAnyExceptionOnSecondPage()
 	{
 		// Full 1st page.
-		$search_response1 = $this->generateSearchResponse('PRJ1', 5, 7);
-		$this->api->search('test jql', 0, 5, 'description')->willReturn($search_response1);
+		$search_response1 = $this->generateSearchResponse('PRJ1', 5, 'EgQIlMIC');
+		$this->api->search('test jql', null, 5, 'description')->willReturn($search_response1);
 
 		// Incomplete 2nd page.
-		$this->api->search('test jql', 5, 5, 'description')->willThrow(new Exception('Anything'));
+		$this->api->search('test jql', 'EgQIlMIC', 5, 'description')->willThrow(new Exception('Anything'));
 
 		$walker = $this->createWalker(5);
 		$walker->push('test jql', 'description');
@@ -220,7 +220,7 @@ class WalkerTest extends AbstractTestCase
 	public function testIssuesPassedThroughDelegate()
 	{
 		$search_response = $this->generateSearchResponse('PRJ', 2);
-		$this->api->search('test jql', 0, 2, 'description')->willReturn($search_response);
+		$this->api->search('test jql', null, 2, 'description')->willReturn($search_response);
 
 		$walker = $this->createWalker(2);
 		$walker->push('test jql', 'description');
@@ -240,49 +240,18 @@ class WalkerTest extends AbstractTestCase
 		);
 	}
 
-	public function testCounting()
-	{
-		// Full 1st page.
-		$search_response1 = $this->generateSearchResponse('PRJ1', 5, 7);
-		$this->api->search('test jql', 0, 5, 'description')->willReturn($search_response1);
-
-		// Incomplete 2nd page.
-		$search_response2 = $this->generateSearchResponse('PRJ2', 2, 7);
-		$this->api->search('test jql', 5, 5, 'description')->willReturn($search_response2);
-
-		$walker = $this->createWalker(5);
-		$walker->push('test jql', 'description');
-
-		$this->assertEquals(7, count($walker));
-
-		$found_issues = array();
-
-		foreach ( $walker as $issue ) {
-			$found_issues[] = $issue;
-		}
-
-		$this->assertEquals(
-			array_merge($search_response1->getIssues(), $search_response2->getIssues()),
-			$found_issues
-		);
-	}
-
 	/**
 	 * Generate search response.
 	 *
-	 * @param string       $project_key Project key.
-	 * @param integer      $issue_count Issue count.
-	 * @param integer|null $total       Total issues.
+	 * @param string      $project_key     Project key.
+	 * @param integer     $issue_count     Issue count.
+	 * @param string|null $next_page_token This is the last page of issues.
 	 *
 	 * @return Result
 	 */
-	protected function generateSearchResponse($project_key, $issue_count, $total = null)
+	protected function generateSearchResponse($project_key, $issue_count, $next_page_token = null)
 	{
 		$issues = array();
-
-		if ( !is_numeric($total) ) {
-			$total = $issue_count;
-		}
 
 		while ( $issue_count > 0 ) {
 			$issue_id = $issue_count + 1000;
@@ -298,13 +267,16 @@ class WalkerTest extends AbstractTestCase
 			$issue_count--;
 		}
 
-		return new Result(array(
-			'expand' => 'schema,names',
-			'startAt' => 0,
-			'maxResults' => count($issues),
-			'total' => $total,
+		$result = array(
+			'isLast' => $next_page_token === null,
 			'issues' => $issues,
-		));
+		);
+
+		if ( $next_page_token ) {
+			$result['nextPageToken'] = $next_page_token;
+		}
+
+		return new Result($result);
 	}
 
 	/**

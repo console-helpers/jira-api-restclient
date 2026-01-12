@@ -4,6 +4,7 @@ namespace Tests\chobie\Jira;
 
 
 use chobie\Jira\Api;
+use chobie\Jira\Api\Exception;
 use chobie\Jira\Api\Result;
 use chobie\Jira\IssueType;
 
@@ -32,16 +33,18 @@ class ApiTest extends AbstractApiTestCase
 		);
 	}
 
-	public function testSearch()
+	/**
+	 * @dataProvider searchFirstPageDataProvider
+	 */
+	public function testSearchFirstPage($next_page_token)
 	{
 		$response = file_get_contents(__DIR__ . '/resources/api_search.json');
 
 		$this->expectClientCall(
 			Api::REQUEST_GET,
-			'/rest/api/2/search',
+			'/rest/api/2/search/jql',
 			array(
 				'jql' => 'test',
-				'startAt' => 5,
 				'maxResults' => 2,
 				'fields' => 'description',
 			),
@@ -50,8 +53,50 @@ class ApiTest extends AbstractApiTestCase
 
 		$this->assertApiResponse(
 			$response,
-			$this->api->search('test', 5, 2, 'description')
+			$this->api->search('test', $next_page_token, 2, 'description')
 		);
+	}
+
+	public static function searchFirstPageDataProvider()
+	{
+		return array(
+			'new way' => array(null),
+			'old way' => array(0),
+		);
+	}
+
+	public function testSearchNextPage()
+	{
+		$response = file_get_contents(__DIR__ . '/resources/api_search.json');
+
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/search/jql',
+			array(
+				'jql' => 'test',
+				'nextPageToken' => 'EgQIlMIC',
+				'maxResults' => 2,
+				'fields' => 'description',
+			),
+			$response
+		);
+
+		$this->assertApiResponse(
+			$response,
+			$this->api->search('test', 'EgQIlMIC', 2, 'description'),
+			true
+		);
+	}
+
+	public function testSearchError()
+	{
+		$this->expectException(Exception::class);
+
+		$error_msg = 'The "$next_page_token" value must be either null (for the first page) ';
+		$error_msg .= 'or come from the "nextPageToken" key of the previous search response.';
+		$this->expectExceptionMessage($error_msg);
+
+		$this->api->search('test', 5, 2, 'description');
 	}
 
 	public function testSetWatchers()
