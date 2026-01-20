@@ -499,6 +499,74 @@ class ApiTest extends AbstractApiTestCase
 		$this->assertApiResponse($response, $this->api->getAttachmentsMetaInformation());
 	}
 
+	public function testQueryParametersHandlingForGetRequestMethod()
+	{
+		$this->expectClientCall(
+			Api::REQUEST_GET,
+			'/rest/api/2/something',
+			array(
+				'q_p1' => 'q_p1_v',
+				'q_p2' => 'q_p2_v',
+				'rb_p1' => 'rb_p1_v',
+				'rb_p2' => 'rb_p2_v',
+				'rb_p3' => 'rb_p3_v',
+			),
+			'{}'
+		);
+
+		$this->api->api(
+			Api::REQUEST_GET,
+			'/rest/api/2/something',
+			array(
+				'_query' => array('q_p1' => 'q_p1_v', 'q_p2' => 'q_p2_v'),
+				'rb_p1' => 'rb_p1_v',
+				'rb_p2' => 'rb_p2_v',
+				'rb_p3' => 'rb_p3_v',
+			),
+			true
+		);
+	}
+
+	/**
+	 * @dataProvider queryParametersHandlingForOtherRequestMethodsDataProvider
+	 *
+	 * @param string $request_method Request method.
+	 */
+	public function testQueryParametersHandlingForOtherRequestMethods($request_method)
+	{
+		$this->expectClientCall(
+			$request_method,
+			'/rest/api/2/something?q_p1=q_p1_v&q_p2=q_p2_v',
+			array(
+				'rb_p1' => 'rb_p1_v',
+				'rb_p2' => 'rb_p2_v',
+				'rb_p3' => 'rb_p3_v',
+			),
+			'{}'
+		);
+
+		$this->api->api(
+			$request_method,
+			'/rest/api/2/something',
+			array(
+				'_query' => array('q_p1' => 'q_p1_v', 'q_p2' => 'q_p2_v'),
+				'rb_p1' => 'rb_p1_v',
+				'rb_p2' => 'rb_p2_v',
+				'rb_p3' => 'rb_p3_v',
+			),
+			true
+		);
+	}
+
+	public static function queryParametersHandlingForOtherRequestMethodsDataProvider()
+	{
+		return array(
+			'delete' => array(Api::REQUEST_DELETE),
+			'post' => array(Api::REQUEST_POST),
+			'put' => array(Api::REQUEST_PUT),
+		);
+	}
+
 	/**
 	 * @dataProvider getCreateMetaDataProvider
 	 */
