@@ -873,12 +873,9 @@ class Api
 				if ( isset($this->fields[$kk]) ) {
 					$x[$this->fields[$kk]['name']] = $vv;
 				}
-				else {
-					$x[$kk] = $vv;
-				}
 			}
 
-			$issue['fields'] = $x;
+			$issue['fields'] += $x; // Also allow accessing fields by their titles.
 		}
 
 		return $issue;

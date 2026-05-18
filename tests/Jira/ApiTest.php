@@ -344,20 +344,24 @@ class ApiTest extends AbstractApiTestCase
 					'issues' => array(
 						array(
 							'fields' => array(
-								'Заголовок' => 'sample title 1',
-								'Описание' => 'sample description 1',
+								'title' => 'sample title 1',
+								'description' => 'sample description 1',
 								'issuetype' => array(
 									'self' => 'https://test.atlassian.net/rest/api/2/issuetype/10034',
 								),
+								'Заголовок' => 'sample title 1',
+								'Описание' => 'sample description 1',
 							),
 						),
 						array(
 							'fields' => array(
-								'Заголовок' => 'sample title 2',
-								'Описание' => 'sample description 2',
+								'title' => 'sample title 2',
+								'description' => 'sample description 2',
 								'issuetype' => array(
 									'self' => 'https://test.atlassian.net/rest/api/2/issuetype/10035',
 								),
+								'Заголовок' => 'sample title 2',
+								'Описание' => 'sample description 2',
 							),
 						),
 					),
