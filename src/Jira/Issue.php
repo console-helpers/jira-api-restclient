@@ -152,7 +152,7 @@ class Issue
 	 */
 	public function getSummary()
 	{
-		return $this->get('Summary');
+		return $this->get('summary');
 	}
 
 	/**
@@ -162,7 +162,7 @@ class Issue
 	 */
 	public function getIssueType()
 	{
-		return $this->get('Issue Type');
+		return $this->get('issuetype');
 	}
 
 	/**
@@ -172,7 +172,7 @@ class Issue
 	 */
 	public function getReporter()
 	{
-		return $this->get('Reporter');
+		return $this->get('reporter');
 	}
 
 	/**
@@ -182,7 +182,7 @@ class Issue
 	 */
 	public function getCreated()
 	{
-		return $this->get('Created');
+		return $this->get('created');
 	}
 
 	/**
@@ -192,7 +192,7 @@ class Issue
 	 */
 	public function getAssignee()
 	{
-		return $this->get('Assignee');
+		return $this->get('assignee');
 	}
 
 	/**
@@ -202,7 +202,7 @@ class Issue
 	 */
 	public function getUpdated()
 	{
-		return $this->get('Updated');
+		return $this->get('updated');
 	}
 
 	/**
@@ -212,7 +212,7 @@ class Issue
 	 */
 	public function getPriority()
 	{
-		return $this->get('Priority');
+		return $this->get('priority');
 	}
 
 	/**
@@ -222,7 +222,7 @@ class Issue
 	 */
 	public function getDescription()
 	{
-		return $this->get('Description');
+		return $this->get('description');
 	}
 
 	/**
@@ -232,7 +232,7 @@ class Issue
 	 */
 	public function getStatus()
 	{
-		return $this->get('Status');
+		return $this->get('status');
 	}
 
 	/**
@@ -242,7 +242,7 @@ class Issue
 	 */
 	public function getLabels()
 	{
-		return $this->get('Labels');
+		return $this->get('labels');
 	}
 
 	/**
@@ -252,7 +252,7 @@ class Issue
 	 */
 	public function getProject()
 	{
-		return $this->get('Project');
+		return $this->get('project');
 	}
 
 	/**
@@ -262,7 +262,7 @@ class Issue
 	 */
 	public function getFixVersions()
 	{
-		return $this->get('Fix Version/s');
+		return $this->get('fixVersions');
 	}
 
 	/**
@@ -272,7 +272,7 @@ class Issue
 	 */
 	public function getResolution()
 	{
-		return $this->get('Resolution');
+		return $this->get('resolution');
 	}
 
 	/**
@@ -283,7 +283,7 @@ class Issue
 	 */
 	public function getResolutionDate()
 	{
-		return $this->get('Resolutiondate');
+		return $this->get('resolutiondate');
 	}
 
 	/**
@@ -293,7 +293,7 @@ class Issue
 	 */
 	public function getWatchers()
 	{
-		return $this->get('Watchers');
+		return $this->get('watches');
 	}
 
 	/**
@@ -303,7 +303,7 @@ class Issue
 	 */
 	public function getDueDate()
 	{
-		return $this->get('Due Date');
+		return $this->get('duedate');
 	}
 
 	/**
@@ -324,7 +324,7 @@ class Issue
 	 *
 	 * @return array
 	 */
-	public function get($field_key)
+    public function get($field_key)
 	{
 		if ( isset($this->fields[$field_key]) ) {
 			return $this->fields[$field_key];

@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - The `$start_at = 0` argument of `Api::search` method was renamed into the `$next_page_token = null` to reflect underlying Jira API changes by [@aik099] (#248).
 - Improved performance of `Result::getIssuesCount` method by [@aik099] (#248).
 - Drop support for PHP <7.4.0 by [@alex-dna] (#250).
+- The `Issue::get` method now can retrieve field value by it's key (e.g. `fixVersions` instead of `Fix Version/s`) even when automapping is turned on.
 
 ### Removed
 - The `Api::search` method and the `Walker` class no longer return total issue count, because underlaying Jira API doesn't support this [@aik099] (#248).
@@ -21,6 +22,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - The `CurlClient` in combination with cURL version < 7.33.0 was getting `426 Upgrade Required` error on any request to the Atlassian Cloud servers by [@aik099] (#239).
 - The `PHPClient` on PHP < 8.0 was getting `426 Upgrade Required` error on any request to the Atlassian Cloud servers by [@aik099] (#239).
 - The `Api::downloadAttachment` method wasn't working with `CurlClient` for Atlassian Cloud servers by [@aik099] (#240).
+- The `Issue` class getter methods (e.g. `Issue::getSummary`) now support multilingual Jira installations by [@dnabuk] (#65).
 
 ## [2.0.0-B1] - 2025-01-04
 ### Added
@@ -103,3 +105,4 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 [@benPesso]: https://github.com/benPesso
 [@danillofb]: https://github.com/danillofb
 [@alex-dna]: https://github.com/alex-dna
+[@dnabuk]: https://github.com/dnabuk
