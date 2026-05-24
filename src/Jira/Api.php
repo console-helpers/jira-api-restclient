@@ -796,7 +796,7 @@ class Api
 	) {
 		$result = $this->client->sendRequest(
 			$method,
-			$url,
+			$this->addQueryParametersToUrl($method, $url, $data),
 			$data,
 			$this->getEndpoint(),
 			$this->authentication,
@@ -827,6 +827,34 @@ class Api
 		}
 
 		return false;
+	}
+
+	/**
+	 * Adds the query parameters to the URL.
+	 *
+	 * @param string       $method Request method.
+	 * @param string       $url    URL.
+	 * @param array|string $data   Data.
+	 *
+	 * @return string
+	 */
+	protected function addQueryParametersToUrl($method, $url, array &$data)
+	{
+		if ( !array_key_exists('_query', $data) ) {
+			return $url;
+		}
+
+		$query_parameters = $data['_query'];
+		unset($data['_query']);
+
+		// For GET requests all given parameters end up in Query parameters.
+		if ( $method === self::REQUEST_GET ) {
+			$data = $query_parameters + $data;
+
+			return $url;
+		}
+
+		return $url . (strpos($url, '?') === false ? '?' : ':') . http_build_query($query_parameters);
 	}
 
 	/**
